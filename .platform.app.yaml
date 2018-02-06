@@ -17,6 +17,7 @@ variables:
 # The hooks that will be performed when the package is deployed.
 hooks:
     build: |
+        composer require platformsh/symfonyflex-bridge
         composer install --no-interaction --optimize-autoloader --no-dev
         bin/console --env=prod assets:install --no-debug
     deploy: |
