@@ -36,6 +36,7 @@ disk: 2048
 mounts:
     "/var/cache": "shared:files/cache"
     "/var/logs": "shared:files/logs"
+    "/var/log": "shared:files/log"
     "/var/sessions": "shared:files/sessions"
 
 # The configuration of app when it is exposed to the web.
