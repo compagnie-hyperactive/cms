@@ -1,0 +1,52 @@
+{% form_theme form with easyadmin_config('design.form_theme') %}
+
+{{ form(form, {'action': '/admin/?action=newAjax&entity=Image'}) }}
+
+<script type="text/javascript">
+    var formId = '{{ form.vars['attr']['id'] }}';
+    var $form = $('#'+formId);
+
+    $($form).on('submit', function(event) {
+        event.preventDefault();
+        var url = $(this).attr('action');
+        var method = $(this).attr('method');
+
+        $.ajax({
+            url: url,
+            type: method,
+
+            data: new FormData($(this)[0]),
+
+            // Tell jQuery not to process data or worry about content-type
+            // You *must* include these options!
+            cache: false,
+            contentType: false,
+            processData: false,
+
+            // Custom XMLHttpRequest
+            xhr: function() {
+                var myXhr = $.ajaxSettings.xhr();
+                if (myXhr.upload) {
+                    // For handling the progress of the upload
+                    myXhr.upload.addEventListener('progress', function(e) {
+                        if (e.lengthComputable) {
+                            $('progress').attr({
+                                value: e.loaded,
+                                max: e.total
+                            });
+                        }
+                    } , false);
+                }
+                return myXhr;
+            },
+            error: function(xhr, ajaxOptions, thrownError) {
+                console.log(xhr.responseText);
+            },
+            success: function(data) {
+                console.log(data);
+            }
+        });
+
+    });
+
+</script>

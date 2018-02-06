@@ -11,7 +11,8 @@
         "symfony/lts": "^3",
         "symfony/orm-pack": "*",
         "symfony/twig-bundle": "^3.4",
-        "symfony/yaml": "^3.4"
+        "symfony/yaml": "^3.4",
+        "vich/uploader-bundle": "^1.8"
     },
     "require-dev": {
         "symfony/dotenv": "^3.4"

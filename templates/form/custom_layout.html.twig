@@ -1,0 +1,42 @@
+{% block _event_head_band_image_row %}
+    <div class="row">
+        <div class="col-xs-12">
+            <div class="form-group">
+                <label class="col-sm-2 control-label required">Image</label>
+                <div class="col-sm-10">
+                    <button class="js-modal media-popin media-popin-with-tabs"
+                            data-modal-prefix-class="simple"
+                            data-modal-content-id="media_image_selection"
+                            data-modal-title="Choisissez votre image"
+                            data-modal-close-text="Fermer"
+                            data-modal-close-title="Fermer"
+                            {#data-modal-field-reference="{{ form.vars['id'] }}"#}
+                    >
+                        Choisir un média
+                    </button>
+
+                    <div class="hidden">{{ form_widget(form) }}</div>
+
+                    <div id="media_image_selection" class="hidden">
+                        <div class="js-tabs" id="media-field-reference" data-field-reference="{{ form.vars['id'] }}">
+                            <ul class="js-tablist" data-hx="h2" data-tabs-prefix-class="example-tabs">
+                                <li class="js-tablist__item">
+                                    <a href="#id_first" id="label_id_first" class="js-tablist__link" data-url="/admin/?action=newAjax&entity=Image">Ajouter un média</a>
+                                </li>
+                                <li class="js-tablist__item">
+                                    <a href="#id_second" id="label_id_second" class="js-tablist__link" data-url="/admin/?entity=Image&action=listAjax">Choisir un média</a>
+                                </li>
+                            </ul>
+                            <div id="id_first" class="js-tabcontent popin-add-media">
+                                here the content of 1st tab
+                            </div>
+                            <div id="id_second" class="js-tabcontent">
+                                here the content of 2nd tab
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
