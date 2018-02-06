@@ -4,12 +4,13 @@
     "require": {
         "php": "^7.0.8",
         "ext-iconv": "*",
+        "javiereguiluz/easyadmin-bundle": "^1.17",
         "platformsh/symfonyflex-bridge": "^1.0",
         "symfony/console": "^3.4",
         "symfony/flex": "^1.0",
         "symfony/framework-bundle": "^3.4",
         "symfony/lts": "^3",
-        "symfony/orm-pack": "^1.0",
+        "symfony/orm-pack": "*",
         "symfony/twig-bundle": "^3.4",
         "symfony/yaml": "^3.4"
     },
