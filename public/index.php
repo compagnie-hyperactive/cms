@@ -1,6 +1,6 @@
 <?php
 
-umask(0002);
+umask(0000);
 
 use App\Kernel;
 use Symfony\Component\Debug\Debug;
