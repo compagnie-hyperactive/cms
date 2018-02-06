@@ -1,0 +1,78 @@
+/* needed for old browsers */
+dialog {
+    display: block;
+}
+/* removes scroll when modal is opened */
+.no-scroll {
+    overflow: hidden;
+}
+/* overlay covers everything */
+.simple-modal-overlay {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: #fff;
+    opacity: .8;
+    z-index: 666; /* satan inside */
+    cursor: pointer;
+}
+/* modal */
+.simple-modal {
+    position: fixed;
+    left: 15%;
+    top: 10%;
+    width: 70%;
+    max-height: 98vh;
+    right: auto;
+    border: 2px solid #000;
+    background: #fff;
+    z-index: 667;
+    padding: 2em;
+    overflow: auto;
+}
+.simple-modal-close {
+    float: right;
+    background: #933;
+    border-radius: 1em;
+    color: #fff;
+    padding: .25em;
+    text-decoration: none;
+    line-height: 1.2;
+    text-align: center;
+}
+.simple-modal-close:focus,
+.simple-modal-close:hover,
+.simple-modal-close:active {
+    background: #882525;
+}
+.simple-modal-overlay[data-background-click="disabled"] {
+    cursor: auto;
+}
+
+/* it can be easily adapted in media-queries for tablets/mobile */
+
+/* for this example: tablets */
+@media (max-width: 55.625em) {
+
+    .simple-modal {
+        left: 5%;
+        top: 5%;
+        bottom: 5%;
+        width: 90%;
+    }
+
+}
+
+/* for this example: mobile */
+@media (max-width: 44.375em) {
+
+    .simple-modal {
+        left: 1%;
+        top: 1%;
+        max-width: 98%;
+        bottom: 1%;
+    }
+
+}
