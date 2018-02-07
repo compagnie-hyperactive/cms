@@ -16,6 +16,10 @@ easy_admin:
         Image:
             class: App\Entity\Image
             controller: App\Controller\ImageController
+            list:
+                fields:
+                    - title
+                    - { property: 'image', template: 'EasyAdmin/Image/list/image.html.twig' }
             form:
                 fields:
                     - title

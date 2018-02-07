@@ -78,8 +78,7 @@ class ImageController extends BaseAdminController
         $paginator = $this->findAll(
             $this->entity['class'],
             $this->request->query->get('page', 1),
-//            $this->config['list']['max_results'],
-            1,
+            $this->config['list']['max_results'],
             $this->request->query->get('sortField'),
             $this->request->query->get('sortDirection'),
             $this->entity['list']['dql_filter']

@@ -1,3 +1,7 @@
 .image-preview .preview img {
     max-height: 200px;
 }
+
+img.image-in-list {
+    max-height: 50px;
+}
