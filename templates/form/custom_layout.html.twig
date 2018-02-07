@@ -7,10 +7,17 @@
 
                     <div class="image-preview">
                         <div class="name">
-                            {{ form.parent.vars.value.headBandImage.title }}
+                            {% if form.parent.vars.value.headBandImage is not null %}
+                                {{ form.parent.vars.value.headBandImage.title }}
+                            {% endif %}
                         </div>
                         <div class="preview">
-                            <img src="{{ vich_uploader_asset(form.parent.vars.value.headBandImage, 'imageFile') }}" />
+                            {% if form.parent.vars.value.headBandImage is not null %}
+                                <img src="{{ vich_uploader_asset(form.parent.vars.value.headBandImage, 'imageFile') }}" />
+                            {% else %}
+                                <img >
+                            {% endif %}
+
                         </div>
                     </div>
 
