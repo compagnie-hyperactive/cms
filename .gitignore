@@ -1,5 +1,6 @@
 .idea
-public/media
+public/media/*
+!public/media/.gitignore
 ###> symfony/framework-bundle ###
 .env
 /public/bundles/

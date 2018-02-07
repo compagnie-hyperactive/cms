@@ -39,6 +39,7 @@ mounts:
     "/var/logs": "shared:files/logs"
     "/var/log": "shared:files/log"
     "/var/sessions": "shared:files/sessions"
+    "/public/media": "shared:files/media"
 
 # The configuration of app when it is exposed to the web.
 web:
