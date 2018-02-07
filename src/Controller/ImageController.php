@@ -10,9 +10,21 @@ namespace App\Controller;
 
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AdminController as BaseAdminController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 
 class ImageController extends BaseAdminController
 {
+    /**
+     * @var UploaderHelper
+     */
+    private $helper;
+
+    public function __construct(UploaderHelper $helper)
+    {
+        $this->helper = $helper;
+    }
+
+
     public function newAjaxAction()
     {
         $entity = $this->executeDynamicMethod('createNew<EntityName>Entity');
@@ -35,9 +47,12 @@ class ImageController extends BaseAdminController
             $this->executeDynamicMethod('prePersist<EntityName>Entity', array($entity));
             $this->executeDynamicMethod('persist<EntityName>Entity', array($entity));
 
+            $path = $this->helper->asset($entity, 'imageFile');
+
             return new JsonResponse([
                 'id' => $entity->getId(),
                 'name' => $entity->getTitle(),
+                'image' => $path,
             ]);
         }
 

@@ -11,14 +11,13 @@
         var url = $(this).attr('action');
         var method = $(this).attr('method');
 
+        var fieldReference = $($form).closest('#media-field-reference').attr('data-field-reference');
+
         $.ajax({
             url: url,
             type: method,
-
             data: new FormData($(this)[0]),
 
-            // Tell jQuery not to process data or worry about content-type
-            // You *must* include these options!
             cache: false,
             contentType: false,
             processData: false,
@@ -43,7 +42,31 @@
                 console.log(xhr.responseText);
             },
             success: function(data) {
-                console.log(data);
+                var fieldReference = $($form).closest('#media-field-reference').attr('data-field-reference');
+
+                $container = $('body').find('#container-'+fieldReference);
+
+                // Update name
+                $($container).find('div.image-preview div.name').html(data.name);
+
+                // Update image caption
+                $($container).find('div.image-preview div.preview img').attr('src', data.image);
+
+                $formElement = $('body').find('#'+fieldReference);
+
+                // Deselect previous
+                $($formElement).find('option:selected').removeAttr('selected');
+
+                // Add new value
+                $($formElement).append($('<option>', {
+                    value: data.id,
+                    text: data.name
+                }));
+
+                // Select choosen id
+                $($formElement).val(data.id);
+
+                $($form).addClass('js-modal-close');
             }
         });
 

@@ -1,16 +1,25 @@
 {% block _event_head_band_image_row %}
     <div class="row">
         <div class="col-xs-12">
-            <div class="form-group">
+            <div class="form-group" id="container-{{ form.vars['id'] }}">
                 <label class="col-sm-2 control-label required">Image</label>
                 <div class="col-sm-10">
+
+                    <div class="image-preview">
+                        <div class="name">
+                            {{ form.parent.vars.value.headBandImage.title }}
+                        </div>
+                        <div class="preview">
+                            <img src="{{ vich_uploader_asset(form.parent.vars.value.headBandImage, 'imageFile') }}" />
+                        </div>
+                    </div>
+
                     <button class="js-modal media-popin media-popin-with-tabs"
                             data-modal-prefix-class="simple"
                             data-modal-content-id="media_image_selection"
                             data-modal-title="Choisissez votre image"
                             data-modal-close-text="Fermer"
                             data-modal-close-title="Fermer"
-                            {#data-modal-field-reference="{{ form.vars['id'] }}"#}
                     >
                         Choisir un média
                     </button>

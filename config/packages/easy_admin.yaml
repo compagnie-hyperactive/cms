@@ -4,6 +4,7 @@ easy_admin:
             css:
                 - '/css/modal.css'
                 - '/css/tabs.css'
+                - '/css/admin.css'
             js:
                 - '/js/modal.js'
                 - '/js/tabs.js'
