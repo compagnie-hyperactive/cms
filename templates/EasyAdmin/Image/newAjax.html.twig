@@ -54,17 +54,7 @@
 
                 $formElement = $('body').find('#'+fieldReference);
 
-                // Deselect previous
-                $($formElement).find('option:selected').removeAttr('selected');
-
-                // Add new value
-                $($formElement).append($('<option>', {
-                    value: data.id,
-                    text: data.name
-                }));
-
-                // Select choosen id
-                $($formElement).val(data.id);
+                $('body').find('#'+fieldReference).val(data.id);
 
                 $('#js-modal-overlay').trigger('click');
             }

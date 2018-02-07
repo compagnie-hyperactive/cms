@@ -1,23 +1,26 @@
-{% block _event_head_band_image_row %}
+{% block lch_add_choose_media_widget %}
     <div class="row">
         <div class="col-xs-12">
-            <div class="form-group" id="container-{{ form.vars['id'] }}">
-                <label class="col-sm-2 control-label required">Image</label>
+            <div class="form-group" id="container-{{ id }}">
+                <label class="col-sm-2 control-label required">
+                    {% set label = (form.vars['label'] is not null) ? form.vars['label'] : form.vars['name'] %}
+                    {{ label|trans }}
+                </label>
                 <div class="col-sm-10">
 
                     <div class="image-preview">
                         <div class="name">
-                            {% if form.parent.vars.value.headBandImage is not null %}
-                                {{ form.parent.vars.value.headBandImage.title }}
+                            {% set entity = attribute(form.parent.vars.value, name) %}
+                            {% if entity is not null %}
+                                {{ entity.title }}
                             {% endif %}
                         </div>
                         <div class="preview">
-                            {% if form.parent.vars.value.headBandImage is not null %}
-                                <img src="{{ vich_uploader_asset(form.parent.vars.value.headBandImage, 'imageFile') }}" />
+                            {% if entity is not null %}
+                                <img src="{{ vich_uploader_asset(entity, 'imageFile') }}" />
                             {% else %}
                                 <img >
                             {% endif %}
-
                         </div>
                     </div>
 
@@ -30,11 +33,9 @@
                     >
                         Choisir un média
                     </button>
-
-                    <div class="hidden">{{ form_widget(form) }}</div>
-
+                    {{ form_widget(form) }}
                     <div id="media_image_selection" class="hidden">
-                        <div class="js-tabs" id="media-field-reference" data-field-reference="{{ form.vars['id'] }}">
+                        <div class="js-tabs" id="media-field-reference" data-field-reference="{{ id }}">
                             <ul class="js-tablist" data-hx="h2" data-tabs-prefix-class="example-tabs">
                                 <li class="js-tablist__item">
                                     <a href="#id_first" id="label_id_first" class="js-tablist__link" data-url="/admin/?action=newAjax&entity=Image">Ajouter un média</a>

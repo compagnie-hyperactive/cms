@@ -13,6 +13,12 @@ easy_admin:
             - 'horizontal'
             - 'form/custom_layout.html.twig'
     entities:
+        Article:
+            class: App\Entity\Article
+            form:
+                fields:
+                    - { property: title }
+                    - { property: headImage, type: 'App\Form\Type\AddOrChooseImageType', label: 'Image' }
         Image:
             class: App\Entity\Image
             controller: App\Controller\ImageController
@@ -32,4 +38,4 @@ easy_admin:
                 fields:
                     - { property: title }
                     - date
-                    - { property: headBandImage, type_options: { block_name: 'head_band_image' } }
+                    - { property: headBandImage, type: 'App\Form\Type\AddOrChooseImageType', label: 'Image' }

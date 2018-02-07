@@ -83,7 +83,13 @@ page: app.request.get('page', 1)
                         </td>
                     {% endfor %}
                     <td>
-                        <a href="#" class="btn list_ajax_media_choose" data-id="{{ _item_id }}">Choisir cette image</a>
+                        <a
+                            href="#"
+                            class="btn list_ajax_media_choose"
+                            data-id="{{ _item_id }}"
+                            data-title="{{ item.title }}"
+                            data-thumbnail="{{ vich_uploader_asset(item, 'imageFile') }}"
+                        >Choisir cette image</a>
                     </td>
                 </tr>
             {% else %}
@@ -147,15 +153,22 @@ page: app.request.get('page', 1)
             event.preventDefault();
 
             var media_id = $(this).attr('data-id');
+            var media_title = $(this).attr('data-title');
+            var media_thumbnail = $(this).attr('data-thumbnail');
 
             // Find close button
             var fieldReference = $(this).closest('#media-field-reference').attr('data-field-reference');
 
-            // Deselect previous
-            $('body').find('#'+fieldReference+ 'option:selected').removeAttr('selected');
+            $('body').find('#'+fieldReference).val(media_id);
 
-            // Select choosen id
-            $('body').find('#'+fieldReference+' option[value="'+media_id+'"]').attr('selected','selected');
+            // Update name & thumbnail
+            $container = $('body').find('#container-'+fieldReference);
+
+            // Update name
+            $($container).find('div.image-preview div.name').html(media_title);
+
+            // Update image caption
+            $($container).find('div.image-preview div.preview img').attr('src', media_thumbnail);
 
             $('#js-modal-overlay').trigger('click');
         });
