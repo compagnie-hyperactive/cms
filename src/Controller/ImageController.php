@@ -10,6 +10,7 @@ namespace App\Controller;
 
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AdminController as BaseAdminController;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 
 class ImageController extends BaseAdminController
@@ -44,16 +45,24 @@ class ImageController extends BaseAdminController
 
         if ($newForm->isSubmitted() && $newForm->isValid()) {
 
-            $this->executeDynamicMethod('prePersist<EntityName>Entity', array($entity));
-            $this->executeDynamicMethod('persist<EntityName>Entity', array($entity));
+            try {
+                $this->executeDynamicMethod('prePersist<EntityName>Entity', array($entity));
+                $this->executeDynamicMethod('persist<EntityName>Entity', array($entity));
 
-            $path = $this->helper->asset($entity, 'imageFile');
+                $path = $this->helper->asset($entity, 'imageFile');
 
-            return new JsonResponse([
-                'id' => $entity->getId(),
-                'name' => $entity->getTitle(),
-                'image' => $path,
-            ]);
+                return new JsonResponse([
+                    'id' => $entity->getId(),
+                    'name' => $entity->getTitle(),
+                    'image' => $path,
+                ]);
+            } catch (\Exception $e) {
+                return new Response(
+                    $e->getMessage(),
+                    $e->getCode()
+                );
+            }
+
         }
 
         return $this->render('EasyAdmin/Image/newAjax.html.twig', [
