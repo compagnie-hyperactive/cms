@@ -157,7 +157,7 @@ page: app.request.get('page', 1)
             // Select choosen id
             $('body').find('#'+fieldReference+' option[value="'+media_id+'"]').attr('selected','selected');
 
-            $(this).closest('#media-field-reference').addClass('js-modal-close');
+            $('#js-modal-overlay').trigger('click');
         });
     });
 </script>
