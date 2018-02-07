@@ -22,6 +22,8 @@ easy_admin:
                     - { property: 'imageFile', type: 'file' }
         Event:
             class: App\Entity\Event
+            list:
+                fields: ['id', 'title']
             form:
                 fields:
                     - { property: title }
