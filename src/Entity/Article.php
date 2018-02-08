@@ -39,6 +39,12 @@ class Article
     private $headImage;
 
     /**
+     * @var string
+     * @ORM\Column(type="text")
+     */
+    private $content;
+
+    /**
      * Get id
      *
      * @return int
@@ -87,6 +93,24 @@ class Article
     public function setHeadImage(Image $headImage)
     {
         $this->headImage = $headImage;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getContent()
+    {
+        return $this->content;
+    }
+
+    /**
+     * @param string $content
+     * @return Article
+     */
+    public function setContent(string $content)
+    {
+        $this->content = $content;
         return $this;
     }
 
