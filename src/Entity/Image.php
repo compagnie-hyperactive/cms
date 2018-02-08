@@ -8,9 +8,8 @@
 
 namespace App\Entity;
 
+use App\Behavior\Timestampable;
 use Doctrine\ORM\Mapping as ORM;
-use Vich\UploaderBundle\Mapping\Annotation as Vich;
-use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * Class Image
@@ -18,10 +17,12 @@ use Symfony\Component\HttpFoundation\File\File;
  *
  * @ORM\Table
  * @ORM\Entity
- * @Vich\Uploadable
+ * @ORM\HasLifecycleCallbacks()
  */
 class Image
 {
+    use Timestampable;
+
     /**
      * @var int
      *
@@ -41,19 +42,12 @@ class Image
      * @ORM\Column(type="string", length=255)
      * @var string
      */
-    private $image;
+    private $file;
 
     /**
-     * @Vich\UploadableField(mapping="images", fileNameProperty="image")
-     * @var File
+     * @ORM\Column(type="string", length=100, nullable=true)
      */
-    private $imageFile;
-
-    /**
-     * @ORM\Column(type="datetime")
-     * @var \DateTime
-     */
-    private $updatedAt;
+    private $path;
 
     public function __toString()
     {
@@ -94,31 +88,31 @@ class Image
         return $this;
     }
 
-    public function setImageFile(File $image = null)
+    public function setFile($file)
     {
-        $this->imageFile = $image;
-
-        // VERY IMPORTANT:
-        // It is required that at least one field changes if you are using Doctrine,
-        // otherwise the event listeners won't be called and the file is lost
-        if ($image) {
-            // if 'updatedAt' is not defined in your entity, use another property
-            $this->updatedAt = new \DateTime('now');
-        }
+        $this->file = $file;
     }
 
-    public function getImageFile()
+    public function getFile()
     {
-        return $this->imageFile;
+        return $this->file;
     }
 
-    public function setImage($image)
+    /**
+     * @return mixed
+     */
+    public function getPath()
     {
-        $this->image = $image;
+        return $this->path;
     }
 
-    public function getImage()
+    /**
+     * @param mixed $path
+     * @return Image
+     */
+    public function setPath($path)
     {
-        return $this->image;
+        $this->path = $path;
+        return $this;
     }
 }

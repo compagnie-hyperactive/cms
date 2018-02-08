@@ -23,13 +23,14 @@ easy_admin:
             class: App\Entity\Image
             controller: App\Controller\ImageController
             list:
+                actions: ['edit', 'download', 'delete']
                 fields:
                     - title
                     - { property: 'image', template: 'EasyAdmin/Image/list/image.html.twig' }
             form:
                 fields:
                     - title
-                    - { property: 'imageFile', type: 'file' }
+                    - { property: 'file', type: 'file' }
         Event:
             class: App\Entity\Event
             list:

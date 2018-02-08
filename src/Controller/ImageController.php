@@ -8,23 +8,23 @@
 
 namespace App\Controller;
 
+use App\Entity\Image;
+use App\Event\ImageDownloadEvent;
+use App\ImageEvents;
+use App\Manager\Media\ImageManager;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AdminController as BaseAdminController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;
-use Vich\UploaderBundle\Templating\Helper\UploaderHelper;
 
 class ImageController extends BaseAdminController
 {
-    /**
-     * @var UploaderHelper
-     */
-    private $helper;
+    /** @var ImageManager  */
+    private $imageManager;
 
-    public function __construct(UploaderHelper $helper)
+    public function __construct(ImageManager $imageManager)
     {
-        $this->helper = $helper;
+        $this->imageManager = $imageManager;
     }
-
 
     public function newAjaxAction()
     {
@@ -49,7 +49,8 @@ class ImageController extends BaseAdminController
                 $this->executeDynamicMethod('prePersist<EntityName>Entity', array($entity));
                 $this->executeDynamicMethod('persist<EntityName>Entity', array($entity));
 
-                $path = $this->helper->asset($entity, 'imageFile');
+                //$path = $this->helper->asset($entity, 'imageFile');
+                $path = $this->imageManager->getPath($entity);
 
                 return new JsonResponse([
                     'id' => $entity->getId(),
@@ -126,4 +127,29 @@ class ImageController extends BaseAdminController
             'fields' => $fields,
         ]);
     }
+
+    /**
+     * @return \Symfony\Component\HttpFoundation\BinaryFileResponse
+     */
+    public function downloadAction()
+    {
+        $easyadmin = $this->request->attributes->get('easyadmin');
+
+        /** @var Image $entity */
+        $entity = $easyadmin['item'];
+
+        // Check if user is authorized to download this document
+        //$this->denyAccessUnlessGranted('download', $entity);
+
+        // Dispatch DocumentDownloadEvent
+        $event = new ImageDownloadEvent($entity);
+        $this->get('event_dispatcher')->dispatch(ImageEvents::IMAGE_DOWNLOAD, $event);
+
+        $file = $event->getFile();
+
+        // Return file
+
+        return $this->file($file, $entity->getTitle().'.'.$file->getExtension());
+    }
+
 }

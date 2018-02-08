@@ -17,7 +17,7 @@
                         </div>
                         <div class="preview">
                             {% if entity is not null %}
-                                <img src="{{ vich_uploader_asset(entity, 'imageFile') }}" />
+                                <img class="image-in-list" src="{{ imagePath(entity) }}" />
                             {% else %}
                                 <img >
                             {% endif %}
