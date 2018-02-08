@@ -15,6 +15,10 @@ easy_admin:
     entities:
         Article:
             class: App\Entity\Article
+            list:
+                fields:
+                    - { property: id}
+                    - { property: title }
             form:
                 fields:
                     - { property: title }
