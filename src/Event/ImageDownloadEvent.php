@@ -10,6 +10,7 @@ namespace App\Event;
 
 use App\Entity\Image;
 use Symfony\Component\EventDispatcher\Event;
+use Symfony\Component\HttpFoundation\File\File;
 
 class ImageDownloadEvent extends Event
 {
@@ -19,19 +20,22 @@ class ImageDownloadEvent extends Event
     /** @var File */
     private $file;
 
+    /** @var string */
+    private $filename;
+
     /**
      * DocumentDownloadEvent constructor.
      * @param Image $image
      */
     public function __construct(Image $image)
     {
-        $this->image = $image;
+        $this->setImage($image);
     }
 
     /**
      * @return Image
      */
-    public function getDocument()
+    public function getImage()
     {
         return $this->image;
     }
@@ -39,17 +43,26 @@ class ImageDownloadEvent extends Event
     /**
      * @param Image $image
      */
-    public function setDocument(Image $image)
+    public function setImage(Image $image)
     {
         $this->image = $image;
+        $this->file = $image->getFile();
+        $this->filename = $image->getTitle();
     }
 
+    /**
+     * @return File
+     */
     public function getFile()
     {
-        die(dump($this->image));
-
-       // $this->file
-
         return $this->file;
+    }
+
+    /**
+     * @return string
+     */
+    public function getFileName()
+    {
+        return $this->filename;
     }
 }
