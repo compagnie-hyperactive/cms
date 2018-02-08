@@ -19,7 +19,7 @@ hooks:
     build: |
         composer require platformsh/symfonyflex-bridge
         composer install --no-interaction --optimize-autoloader --no-dev
-        bin/console doctirne:migrations:migrate --allow-no-migration --no-interaction --no-debug
+        bin/console doctrine:migrations:migrate --allow-no-migration --no-interaction --no-debug
         bin/console --env=prod assets:install --no-debug
     deploy: |
         bin/console --env=prod cache:clear
