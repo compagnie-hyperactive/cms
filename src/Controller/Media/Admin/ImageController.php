@@ -6,7 +6,7 @@
  * Time: 11:21
  */
 
-namespace App\Controller;
+namespace App\Controller\Media\Admin;
 
 
 use App\Entity\Media\Image;

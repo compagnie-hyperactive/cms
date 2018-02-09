@@ -25,7 +25,7 @@ easy_admin:
                     - { property: headImage, type: 'App\Form\Type\AddOrChooseImageType', label: 'Image' }
         Image:
             class: App\Entity\Media\Image
-            controller: App\Controller\ImageController
+            controller: App\Controller\Media\Admin\ImageController
             list:
                 actions: ['edit', 'download', 'delete']
                 fields:
