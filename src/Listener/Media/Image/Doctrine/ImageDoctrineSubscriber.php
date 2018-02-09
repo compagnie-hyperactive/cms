@@ -6,10 +6,10 @@
  * Time: 11:21
  */
 
-namespace App\Listener\Doctrine;
+namespace App\Listener\Media\Image\Doctrine;
 
-use App\Entity\Image;
-use App\Manager\Media\ImageManager;
+use App\Entity\Media\Image;
+use App\Manager\Media\Image\ImageManager;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
@@ -46,13 +46,13 @@ class ImageDoctrineSubscriber implements EventSubscriber
      */
     public function postLoad(LifecycleEventArgs $args)
     {
-        /** @var Image $image */
-        if (false === ($document = $this->getImage($args))) {
+        /** @var Image $media */
+        if (false === ($media = $this->getImage($args))) {
             return;
         }
 
         // Transform file path in a File object
-        $this->imageManager->handleFile($document);
+        $this->imageManager->handleFile($media);
     }
 
     /**
@@ -62,13 +62,13 @@ class ImageDoctrineSubscriber implements EventSubscriber
      */
     public function prePersist(LifecycleEventArgs $args)
     {
-        /** @var Image $image */
-        if (false === ($image = $this->getImage($args))) {
+        /** @var Image $media */
+        if (false === ($media = $this->getImage($args))) {
             return;
         }
 
         // Upload Document File
-        $this->imageManager->uploadImageFile($image);
+        $this->imageManager->uploadImageFile($media);
     }
 
     /**
@@ -79,25 +79,25 @@ class ImageDoctrineSubscriber implements EventSubscriber
      */
     public function preUpdate(PreUpdateEventArgs $args)
     {
-        /** @var Image $image */
-        if (false === ($image = $this->getImage($args))) {
+        /** @var Image $media */
+        if (false === ($media = $this->getImage($args))) {
             return;
         }
 
         $precedentFile = $args->getEntityChangeSet()['file'][0];
 
         // If get is different from null, the file has been modified
-        if ($image->getFile() instanceof UploadedFile) {
+        if ($media->getFile() instanceof UploadedFile) {
             // Delete precedent File
-            $this->imageManager->deletePrecedentFile($image, $precedentFile);
+            $this->imageManager->deletePrecedentFile($media, $precedentFile);
 
             // Upload Document File
-            $this->imageManager->uploadImageFile($image);
+            $this->imageManager->uploadImageFile($media);
         } else {
             if ($precedentFile instanceof File) {
                 $precedentFile = $precedentFile->getFilename();
             }
-            $image->setFile($precedentFile);
+            $media->setFile($precedentFile);
         }
     }
 
@@ -109,10 +109,10 @@ class ImageDoctrineSubscriber implements EventSubscriber
     private function getImage(LifecycleEventArgs $args)
     {
         /** @var Image|bool $image */
-        if (false === ($image = $args->getObject()) instanceof Image) {
+        if (false === ($media = $args->getObject()) instanceof Image) {
             return false;
         }
 
-        return $image;
+        return $media;
     }
 }

@@ -6,7 +6,7 @@
  * Time: 10:00
  */
 
-namespace App\Entity;
+namespace App\Entity\Media;
 
 use App\Behavior\Timestampable;
 use Doctrine\ORM\Mapping as ORM;

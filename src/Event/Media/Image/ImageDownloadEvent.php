@@ -6,9 +6,9 @@
  * Time: 08:22
  */
 
-namespace App\Event;
+namespace App\Event\Media\Image;
 
-use App\Entity\Image;
+use App\Entity\Media\Image;
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\HttpFoundation\File\File;
 

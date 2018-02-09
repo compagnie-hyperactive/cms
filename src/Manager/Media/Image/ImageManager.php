@@ -6,10 +6,10 @@
  * Time: 11:26
  */
 
-namespace App\Manager\Media;
+namespace App\Manager\Media\Image;
 
-use App\Entity\Image;
-use Symfony\Component\HttpFoundation\File\File;
+use App\Entity\Media\Image;
+use App\Manager\Media\FileManager;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class ImageManager
@@ -89,14 +89,14 @@ class ImageManager
     }
 
     /**
-     * @param Image $image
+     * @param Image $media
      * @return string
      */
-    public function getPath(Image $image)
+    public function getPath(Image $media)
     {
-        $this->handleFile($image);
+        $this->handleFile($media);
 
-        return $image->getPath().'/'.$image->getFile()->getFilename();
+        return $media->getPath().'/'.$media->getFile()->getFilename();
     }
 
     /**

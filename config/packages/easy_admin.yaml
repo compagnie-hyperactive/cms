@@ -2,16 +2,16 @@ easy_admin:
     design:
         assets:
             css:
-                - '/css/modal.css'
-                - '/css/tabs.css'
+                - '/css/modal.css'  # Used for media popin
+                - '/css/tabs.css'   # Used for media popin
                 - '/css/admin.css'
             js:
-                - '/js/modal.js'
-                - '/js/tabs.js'
+                - '/js/modal.js'    # Used for media popin
+                - '/js/tabs.js'     # Used for media popin
                 - '/js/media.js'
         form_theme:
             - 'horizontal'
-            - 'form/custom_layout.html.twig'
+            - 'form/media.html.twig'
     entities:
         Article:
             class: App\Entity\Article
@@ -24,7 +24,7 @@ easy_admin:
                     - { property: title }
                     - { property: headImage, type: 'App\Form\Type\AddOrChooseImageType', label: 'Image' }
         Image:
-            class: App\Entity\Image
+            class: App\Entity\Media\Image
             controller: App\Controller\ImageController
             list:
                 actions: ['edit', 'download', 'delete']

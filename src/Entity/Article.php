@@ -9,6 +9,7 @@
 namespace App\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Media\Image;
 
 /**
  * Class Event
@@ -34,7 +35,7 @@ class Article
 
     /**
      * @var Image
-     * @ORM\ManyToOne(targetEntity="App\Entity\Image")
+     * @ORM\ManyToOne(targetEntity="App\Entity\Media\Image")
      */
     private $headImage;
 

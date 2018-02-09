@@ -9,8 +9,8 @@
 namespace App\Twig\Media\Image;
 
 
-use App\Entity\Image;
-use App\Manager\Media\ImageManager;
+use App\Entity\Media\Image;
+use App\Manager\Media\Image\ImageManager;
 use Twig\Extension\AbstractExtension;
 
 class ImageExtension extends AbstractExtension
