@@ -1,13 +1,35 @@
 security:
-    # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
+    encoders:
+        App\Entity\User\User:
+            algorithm: bcrypt
     providers:
-        in_memory: { memory: ~ }
+        db_provider:
+            entity:
+                class: App\Entity\User\User
+                property: username
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+
+        admin:
+            provider: db_provider # Use any declared provider above
+            form_login:
+                login_path: /admin/login
+                check_path: /admin/login
+                default_target_path: /admin
+            anonymous: true
+            logout:
+                path:   /admin/logout
+                target: /admin/login
+            remember_me:
+                secret:   '%env(APP_SECRET)%'
+                lifetime: 604800 # 1 week in seconds
+                path:     /admin
+            logout_on_user_change: true
         main:
             anonymous: ~
+            logout_on_user_change: true
 
             # activate different ways to authenticate
 
@@ -16,3 +38,6 @@ security:
 
             # form_login: ~
             # https://symfony.com/doc/current/security/form_login_setup.html
+    access_control:
+        - { path: ^/admin/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/admin,       roles: IS_AUTHENTICATED_FULLY }
