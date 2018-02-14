@@ -13,7 +13,6 @@ dependencies:
     ruby:
         sass: "*" # not required, just assuming
     nodejs:
-        pm2: "^8.9"
         yarn: "*"
 
 variables:
@@ -27,7 +26,6 @@ hooks:
         composer require platformsh/symfonyflex-bridge
         composer install --no-interaction --optimize-autoloader --no-dev
         bin/console --env=prod assets:install --no-debug
-        yarn install
     deploy: |
         bin/console --env=prod cache:clear
 
