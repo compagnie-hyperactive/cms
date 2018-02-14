@@ -9,6 +9,12 @@ type: php:7.1
 build:
     flavor: composer
 
+dependencies:
+    ruby:
+        sass: "*" # not required, just assuming
+    nodejs:
+        yarn: "*"
+
 variables:
     env:
         # Tell Symfony to always install in production-mode.
@@ -20,6 +26,7 @@ hooks:
         composer require platformsh/symfonyflex-bridge
         composer install --no-interaction --optimize-autoloader --no-dev
         bin/console --env=prod assets:install --no-debug
+        yarn install
     deploy: |
         bin/console --env=prod cache:clear
 
