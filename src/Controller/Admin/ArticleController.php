@@ -8,11 +8,55 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Article;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AdminController as BaseAdminController;
 use EasyCorp\Bundle\EasyAdminBundle\Event\EasyAdminEvents;
+use Symfony\Component\HttpFoundation\StreamedResponse;
 
 class ArticleController extends BaseAdminController
 {
+    public function exportAction()
+    {
+        $searchQuery = trim($this->request->query->get('query'));
+        $status = trim($this->request->query->get('status'));
+        $dqlFilter = $this->entity['search']['dql_filter'];
+        $searchableFields = $this->entity['search']['fields'];
+
+        if ('' !== $status) {
+
+            if ($status === 'published') {
+                $statusFilter = 'entity.published = 1';
+            } elseif ($status === 'non-published') {
+                $statusFilter = 'entity.published = 0';
+            }
+            if (isset($statusFilter)) {
+                $dqlFilter = isset($dqlFilter) ? $dqlFilter .' AND '.$statusFilter : $statusFilter;
+            }
+        }
+
+        $queryBuilder = $this->createSearchQueryBuilder($this->entity['class'], $searchQuery, $searchableFields, null, null, $dqlFilter);
+
+        $results = $queryBuilder->getQuery()->execute();
+
+        $columns = ['Titre','Status'];
+
+        $response = new StreamedResponse();
+        $response->setCallback(function () use ($results, $columns) {
+            $handle = fopen('php://output', 'w+');
+            // Add header
+            fputcsv($handle, $columns);
+            array_map(function(Article $article) use ($handle) {
+                //return [$article->getTitle(), $article->getPublished()];
+                fputcsv($handle, [$article->getTitle(), $article->getPublished() === true ? 'Publié' : 'Non publié']);
+            }, $results);
+            fclose($handle);
+        });
+        $filename = $this->request->query->get('entity').'-'.(new \DateTime())->format('d-m-y').'.csv';
+        $response->headers->set('Content-Type', 'text/csv; charset=utf-8');
+        $response->headers->set('Content-Disposition', 'attachment; filename="' . $filename . '"');
+        return $response;
+    }
+
     protected function searchAction()
     {
         $this->dispatch(EasyAdminEvents::PRE_SEARCH);
