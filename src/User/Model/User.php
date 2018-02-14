@@ -11,10 +11,13 @@ namespace App\User\Model;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @ORM\Entity
  * @ORM\Table
+ * @UniqueEntity(fields="email", message="Email already taken")
+ * @UniqueEntity(fields="username", message="Username already taken")
  */
 abstract class User implements AdvancedUserInterface, \Serializable
 {
@@ -33,12 +36,16 @@ abstract class User implements AdvancedUserInterface, \Serializable
 
     /**
      * @ORM\Column(type="string", length=100, unique=true)
-     * @Assert\Email(
-     *     message = "The email '{{ value }}' is not a valid email.",
-     *     checkMX = true
-     * )
+     * @Assert\NotBlank()
+     * @Assert\Email()
      */
     protected $email;
+
+    /**
+     * @Assert\NotBlank()
+     * @Assert\Length(max=4096)
+     */
+    private $plainPassword;
 
     /**
      * @ORM\Column(type="string", length=64)
@@ -99,6 +106,16 @@ abstract class User implements AdvancedUserInterface, \Serializable
     public function getUsername()
     {
         return $this->username;
+    }
+
+    public function getPlainPassword()
+    {
+        return $this->plainPassword;
+    }
+
+    public function setPlainPassword($password)
+    {
+        $this->plainPassword = $password;
     }
 
     public function getSalt()
