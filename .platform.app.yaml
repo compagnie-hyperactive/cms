@@ -13,6 +13,7 @@ dependencies:
     ruby:
         sass: "*" # not required, just assuming
     nodejs:
+        pm2: "^8.9"
         yarn: "*"
 
 variables:
