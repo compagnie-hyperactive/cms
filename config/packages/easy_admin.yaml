@@ -19,14 +19,24 @@ easy_admin:
     entities:
         Article:
             class: App\Entity\Article
+            controller: App\Controller\Admin\ArticleController
+            templates:
+                list: 'EasyAdmin/Article/list/list.html.twig'
             list:
                 fields:
                     - { property: id }
                     - { property: title }
+                    - { property: published }
             form:
                 fields:
                     - { property: title }
                     - { property: headImage, type: 'App\Form\Type\AddOrChooseImageType', label: 'Image' }
+                    - { property: published, type_options: { required: false } }
+                    - { property: content }
+            search:
+                fields:
+                   - { property: 'title', searchField: 'title' }
+                   - { property: 'published', searchField: 'status'}
         Image:
             class: App\Entity\Media\Image
             controller: App\Controller\Media\Admin\ImageController

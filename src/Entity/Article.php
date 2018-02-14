@@ -36,6 +36,7 @@ class Article
     /**
      * @var Image
      * @ORM\ManyToOne(targetEntity="App\Entity\Media\Image")
+     * @ORM\JoinColumn(nullable=true)
      */
     private $headImage;
 
@@ -44,6 +45,39 @@ class Article
      * @ORM\Column(type="text")
      */
     private $content;
+
+    /**
+     * @var boolean
+     * @ORM\Column(type="boolean")
+     */
+    private $published;
+
+    /**
+     * @return bool
+     */
+    public function getPublished()
+    {
+        return $this->published;
+    }
+
+    /**
+     * @return bool
+     */
+    public function isPublished()
+    {
+        return $this->published;
+    }
+
+    /**
+     * @param bool $published
+     * @return $this
+     */
+    public function setPublished($published)
+    {
+        $this->published = $published;
+
+        return $this;
+    }
 
     /**
      * Get id
