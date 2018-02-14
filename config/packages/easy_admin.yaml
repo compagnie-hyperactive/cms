@@ -20,8 +20,6 @@ easy_admin:
         Article:
             class: App\Entity\Article
             controller: App\Controller\Admin\ArticleController
-            templates:
-                list: 'EasyAdmin/Article/list/list.html.twig'
             list:
                 fields:
                     - { property: id }
