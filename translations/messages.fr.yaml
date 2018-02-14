@@ -1,0 +1,8 @@
+admin:
+    menu:
+        article: Article
+        event: Événement
+        image: Image
+    image:
+        list:
+            title: Liste des images

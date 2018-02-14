@@ -6,11 +6,10 @@
  * Time: 12:01
  */
 
-namespace App\Twig\Media\Image;
+namespace App\Media\Twig;
 
-
-use App\Entity\Media\Image;
-use App\Manager\Media\Image\ImageManager;
+use App\Media\ImageManager;
+use App\Media\Model\ImageInterface;
 use Twig\Extension\AbstractExtension;
 
 class ImageExtension extends AbstractExtension
@@ -27,6 +26,9 @@ class ImageExtension extends AbstractExtension
         $this->imageManager = $imageManager;
     }
 
+    /**
+     * @return array|\Twig_Function[]
+     */
     public function getFunctions()
     {
         return array(
@@ -34,7 +36,11 @@ class ImageExtension extends AbstractExtension
         );
     }
 
-    public function imagePath(Image $image)
+    /**
+     * @param ImageInterface $image
+     * @return string
+     */
+    public function imagePath(ImageInterface $image)
     {
         return $this->imageManager->getPath($image);
     }

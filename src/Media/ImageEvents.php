@@ -6,7 +6,7 @@
  * Time: 09:43
  */
 
-namespace App;
+namespace App\Media;
 
 
 class ImageEvents

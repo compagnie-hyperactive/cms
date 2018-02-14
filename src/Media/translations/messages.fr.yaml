@@ -1,0 +1,9 @@
+media:
+    action:
+        download:
+            label: Télécharger
+    image:
+        title:
+            label: Nom
+        image:
+            label: Image

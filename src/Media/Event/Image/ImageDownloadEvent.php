@@ -6,15 +6,15 @@
  * Time: 08:22
  */
 
-namespace App\Event\Media\Image;
+namespace App\Media\Event\Image;
 
-use App\Entity\Media\Image;
+use App\Media\Model\ImageInterface;
 use Symfony\Component\EventDispatcher\Event;
 use Symfony\Component\HttpFoundation\File\File;
 
 class ImageDownloadEvent extends Event
 {
-    /** @var Image  */
+    /** @var ImageInterface  */
     private $image;
 
     /** @var File */
@@ -25,15 +25,15 @@ class ImageDownloadEvent extends Event
 
     /**
      * DocumentDownloadEvent constructor.
-     * @param Image $image
+     * @param ImageInterface $image
      */
-    public function __construct(Image $image)
+    public function __construct(ImageInterface $image)
     {
         $this->setImage($image);
     }
 
     /**
-     * @return Image
+     * @return ImageInterface
      */
     public function getImage()
     {
@@ -41,9 +41,9 @@ class ImageDownloadEvent extends Event
     }
 
     /**
-     * @param Image $image
+     * @param ImageInterface $image
      */
-    public function setImage(Image $image)
+    public function setImage(ImageInterface $image)
     {
         $this->image = $image;
         $this->file = $image->getFile();

@@ -6,10 +6,11 @@
  * Time: 11:21
  */
 
-namespace App\Listener\Media\Image\Doctrine;
+namespace App\Media\Listener\Doctrine;
 
 use App\Entity\Media\Image;
-use App\Manager\Media\Image\ImageManager;
+use App\Media\ImageManager;
+use App\Media\Model\ImageInterface;
 use Doctrine\Common\EventSubscriber;
 use Doctrine\Common\Persistence\Event\LifecycleEventArgs;
 use Doctrine\ORM\Event\PreUpdateEventArgs;
@@ -21,6 +22,10 @@ class ImageDoctrineSubscriber implements EventSubscriber
     /** @var ImageManager  */
     private $imageManager;
 
+    /**
+     * ImageDoctrineSubscriber constructor.
+     * @param ImageManager $imageManager
+     */
     public function __construct(ImageManager $imageManager)
     {
         $this->imageManager = $imageManager;
@@ -56,18 +61,18 @@ class ImageDoctrineSubscriber implements EventSubscriber
     }
 
     /**
-     * On prepersist, upload the document file
+     * On PrePersist, upload the document file
      *
      * @param LifecycleEventArgs $args
      */
     public function prePersist(LifecycleEventArgs $args)
     {
-        /** @var Image $media */
+        /** @var ImageInterface $media */
         if (false === ($media = $this->getImage($args))) {
             return;
         }
 
-        // Upload Document File
+        // Upload Document FileuploadImageFile
         $this->imageManager->uploadImageFile($media);
     }
 
@@ -104,12 +109,12 @@ class ImageDoctrineSubscriber implements EventSubscriber
     /**
      * @param LifecycleEventArgs $args
      *
-     * @return bool|Image
+     * @return bool|ImageInterface
      */
     private function getImage(LifecycleEventArgs $args)
     {
-        /** @var Image|bool $image */
-        if (false === ($media = $args->getObject()) instanceof Image) {
+        /** @var ImageInterface|bool $media */
+        if (false === ($media = $args->getObject()) instanceof ImageInterface) {
             return false;
         }
 

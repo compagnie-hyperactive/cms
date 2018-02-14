@@ -6,7 +6,7 @@
  * Time: 11:27
  */
 
-namespace App\Manager\Media;
+namespace App\Media;
 
 use Symfony\Component\HttpFoundation\File\File;
 

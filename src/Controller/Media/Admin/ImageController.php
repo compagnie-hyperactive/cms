@@ -8,11 +8,10 @@
 
 namespace App\Controller\Media\Admin;
 
-
 use App\Entity\Media\Image;
-use App\Event\Media\Image\ImageDownloadEvent;
-use App\ImageEvents;
-use App\Manager\Media\Image\ImageManager;
+use App\Media\Event\Image\ImageDownloadEvent;
+use App\Media\ImageEvents;
+use App\Media\ImageManager;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AdminController as BaseAdminController;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Response;

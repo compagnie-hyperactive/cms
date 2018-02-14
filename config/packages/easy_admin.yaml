@@ -12,12 +12,16 @@ easy_admin:
         form_theme:
             - 'horizontal'
             - 'form/media.html.twig'
+        menu:
+            - { entity: 'Image', label: 'admin.menu.image' }
+            - { entity: 'Event', label: 'admin.menu.event' }
+            - { entity: 'Article', label: 'admin.menu.article' }
     entities:
         Article:
             class: App\Entity\Article
             list:
                 fields:
-                    - { property: id}
+                    - { property: id }
                     - { property: title }
             form:
                 fields:
@@ -27,10 +31,14 @@ easy_admin:
             class: App\Entity\Media\Image
             controller: App\Controller\Media\Admin\ImageController
             list:
-                actions: ['edit', 'download', 'delete']
+                title: 'admin.image.list.title'
+                actions:
+                    - { name: 'edit' }
+                    - { name: 'download', label: 'media.action.download.label' }
+                    - { name: 'delete' }
                 fields:
-                    - title
-                    - { property: 'image', template: 'EasyAdmin/Image/list/image.html.twig' }
+                    - { property: 'title', label: 'media.image.title.label' }
+                    - { property: 'image', template: 'EasyAdmin/Image/list/image.html.twig', label: 'media.image.image.label' }
             form:
                 fields:
                     - title
