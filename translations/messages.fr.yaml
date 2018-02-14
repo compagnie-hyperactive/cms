@@ -1,8 +1,7 @@
-admin:
-    menu:
-        article: Article
-        event: Événement
-        image: Image
-    image:
-        list:
-            title: Liste des images
+admin.action.edit.label: Éditer
+admin.action.delete.label: Supprimer
+admin.image.list.title: Liste des images
+admin.menu.article: Article
+admin.menu.event: Événement
+admin.menu.image: Image
+Image: Image

@@ -33,9 +33,9 @@ easy_admin:
             list:
                 title: 'admin.image.list.title'
                 actions:
-                    - { name: 'edit' }
+                    - { name: 'edit', label: 'admin.action.edit.label' }
                     - { name: 'download', label: 'media.action.download.label' }
-                    - { name: 'delete' }
+                    - { name: 'delete', label: 'admin.action.delete.label' }
                 fields:
                     - { property: 'title', label: 'media.image.title.label' }
                     - { property: 'image', template: 'EasyAdmin/Image/list/image.html.twig', label: 'media.image.image.label' }

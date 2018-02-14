@@ -1,9 +1,3 @@
-media:
-    action:
-        download:
-            label: Télécharger
-    image:
-        title:
-            label: Nom
-        image:
-            label: Image
+media.action.download.label: Télécharger
+media.image.title.label: Nom
+media.image.image.label: Image
