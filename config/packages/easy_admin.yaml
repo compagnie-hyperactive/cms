@@ -13,7 +13,7 @@ easy_admin:
             - 'horizontal'
             - 'form/media.html.twig'
         menu:
-            - { label: 'admin.menu.dashboard', route: 'admin_dashboard' }
+            - { label: 'admin.menu.dashboard', route: 'admin_dashboard', default: true }
             - { entity: 'Image', label: 'admin.menu.image' }
             - { entity: 'Event', label: 'admin.menu.event' }
             - { entity: 'Article', label: 'admin.menu.article' }
