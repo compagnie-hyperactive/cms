@@ -30,6 +30,7 @@ class PasswordUpdater
      * Hash a user password
      *
      * @param User $user
+     * @throws \Exception
      */
     public function hashPassword(User $user)
     {
@@ -40,13 +41,6 @@ class PasswordUpdater
         }
 
         $encoder = $this->encoderFactory->getEncoder($user);
-
-        if ($encoder instanceof BCryptPasswordEncoder) {
-            $user->setSalt(null);
-        } else {
-            $salt = rtrim(str_replace('+', '.', base64_encode(random_bytes(32))), '=');
-            $user->setSalt($salt);
-        }
 
         $hashedPassword = $encoder->encodePassword($plainPassword, $user->getSalt());
         $user->setPassword($hashedPassword);

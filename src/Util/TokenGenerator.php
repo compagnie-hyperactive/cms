@@ -15,6 +15,8 @@ class TokenGenerator
      * Generate a token
      *
      * @return string
+     *
+     * @throws \Exception
      */
     public function generateToken()
     {

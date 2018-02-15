@@ -42,7 +42,7 @@ class UserManager
      *
      * @param string $username
      *
-     * @return User|null
+     * @return AdvancedUserInterface|null
      */
     public function findUserByUsername($username)
     {
@@ -72,7 +72,7 @@ class UserManager
      *
      * @param $confirmationToken
      *
-     * @return User|null
+     * @return AdvancedUserInterface|null
      */
     public function findUserByConfirmationToken($confirmationToken)
     {
