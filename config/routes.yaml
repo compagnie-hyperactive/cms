@@ -30,3 +30,7 @@ reset_email:
 registration:
     path: /registration
     defaults: { _controller: 'App\Controller\Security\RegistrationController::register'}
+
+admin_dashboard:
+    path: /admin/dashboard
+    defaults: { _controller: 'App\Controller\Admin\DashboardController::dashboard' }

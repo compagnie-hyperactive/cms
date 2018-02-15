@@ -13,6 +13,7 @@ easy_admin:
             - 'horizontal'
             - 'form/media.html.twig'
         menu:
+            - { label: 'admin.menu.dashboard', route: 'admin_dashboard' }
             - { entity: 'Image', label: 'admin.menu.image' }
             - { entity: 'Event', label: 'admin.menu.event' }
             - { entity: 'Article', label: 'admin.menu.article' }
@@ -20,6 +21,8 @@ easy_admin:
         Article:
             class: App\Entity\Article
             controller: App\Controller\Admin\ArticleController
+            templates:
+                list: '@App\admin\article\list.html.twig'
             list:
                 fields:
                     - { property: id }
