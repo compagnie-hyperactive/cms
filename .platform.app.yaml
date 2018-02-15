@@ -25,6 +25,7 @@ hooks:
     build: |
         composer require platformsh/symfonyflex-bridge
         composer install --no-interaction --optimize-autoloader --no-dev
+        yarn install
         yarn run encore production
         bin/console --env=prod assets:install --no-debug
     deploy: |
