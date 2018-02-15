@@ -13,6 +13,7 @@ dependencies:
     ruby:
         sass: "*" # not required, just assuming
     nodejs:
+        npm: "5.5.1"
         yarn: "*"
 
 variables:
