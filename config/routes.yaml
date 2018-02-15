@@ -31,6 +31,14 @@ registration:
     path: /registration
     defaults: { _controller: 'App\Controller\Security\RegistrationController::register'}
 
-admin_dashboard:
-    path: /admin/dashboard
-    defaults: { _controller: 'App\Controller\Admin\DashboardController::dashboard' }
+app_front:
+  resource: "routes/front-app.yaml"
+  prefix:   /
+
+app_back:
+  resource: "routes/back-app.yaml"
+  prefix:   /admin
+
+cms_back:
+  resource: "routes/back-cms.yaml"
+  prefix:   /admin
