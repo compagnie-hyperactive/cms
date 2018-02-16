@@ -81,11 +81,13 @@ class UserManager
         return $user;
     }
 
-    /**
-     * Encode & update user password
-     *
-     * @param User $user
-     */
+	/**
+	 * Encode & update user password
+	 *
+	 * @param User $user
+
+	 * @throws \Exception
+	 */
     public function updateUserPassword(User $user)
     {
         $this->passwordUpdater->hashPassword($user);
