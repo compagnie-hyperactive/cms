@@ -9,17 +9,15 @@
 namespace App\Util;
 
 
-class TokenGenerator
-{
-    /**
-     * Generate a token
-     *
-     * @return string
-     *
-     * @throws \Exception
-     */
-    public function generateToken()
-    {
-        return rtrim(strtr(base64_encode(random_bytes(32)), '+/', '-_'), '=');
-    }
+class TokenGenerator {
+	/**
+	 * Generate a token
+	 *
+	 * @return string
+	 *
+	 * @throws \Exception
+	 */
+	public function generateToken() {
+		return rtrim( strtr( base64_encode( random_bytes( 32 ) ), '+/', '-_' ), '=' );
+	}
 }
