@@ -8,7 +8,7 @@
 
 namespace App\Entity\User;
 
-use App\User\Model\User as BaseUser;
+use Lch\UserBundle\Entity\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
