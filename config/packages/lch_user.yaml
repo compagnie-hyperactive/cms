@@ -1,2 +1,6 @@
 lch_user:
-  user_class: App\Entity\User\User
+  classes:
+    user: App\Entity\User\User
+  resetting_ttl: 86400
+  templates:
+    login: '@App\security\login.html.twig'
