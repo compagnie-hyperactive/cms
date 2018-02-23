@@ -10,9 +10,6 @@ namespace App\Controller\Security;
 
 use App\Entity\User\User;
 use Lch\UserBundle\Type\ResetPasswordType;
-use Lch\UserBundle\Manager\UserManager;
-use Lch\UserBundle\Util\Mailer;
-use Lch\UserBundle\Util\TokenGenerator;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RedirectResponse;
@@ -34,33 +31,30 @@ class ResettingController extends Controller
 	 * Step 2: Send a resetting password email to user
 	 *
 	 * @param Request $request
-	 * @param UserManager $userManager
-	 * @param Mailer $mailer
-	 * @param TokenGenerator $tokenGenerator
 	 *
 	 * @return RedirectResponse
 	 */
-	public function sendEmail(Request $request, UserManager $userManager, Mailer $mailer, TokenGenerator $tokenGenerator)
+	public function sendEmail(Request $request)
 	{
 		$username = $request->request->get('username');
 
 		/** @var User $user */
-		$user = $userManager->findUserByUsername($username);
+		$user = $this->get('lch_user.manager')->findUserByUsername($username);
 
 		if (null !== $user && !$user->isPasswordRequestNonExpired($this->getParameter('lch_user.resetting_ttl'))) {
 
 			if (null === $user->getConfirmationToken()) {
-				$user->setConfirmationToken($tokenGenerator->generateToken());
+				$user->setConfirmationToken($this->get('lch_user.token_generator')->generateToken());
 			}
 
 			// Send Email
-			$mailer->sendResetPasswordEmail($user);
+			$this->get('lch_user.mailer')->sendResetPasswordEmail($user);
 
 			$user->setPasswordRequestedAt(new \DateTime());
-			$userManager->updateUser($user);
+			$this->get('lch_user.manager')->updateUser($user);
 		}
 
-		return new RedirectResponse($this->generateUrl('check_email', ['username' => $username]));
+		return new RedirectResponse($this->generateUrl('app_check_email', ['username' => $username]));
 	}
 
 	/**
@@ -90,13 +84,12 @@ class ResettingController extends Controller
 	 *
 	 * @param Request $request
 	 * @param $token
-	 * @param UserManager $userManager
 	 *
 	 * @return RedirectResponse|\Symfony\Component\HttpFoundation\Response
 	 */
-	public function reset(Request $request, $token, UserManager $userManager)
+	public function reset(Request $request, $token)
 	{
-		$user = $userManager->findUserByConfirmationToken($token);
+		$user = $this->get('lch_user.manager')->findUserByConfirmationToken($token);
 
 		if (null === $user) {
 			throw new NotFoundHttpException(sprintf('The user with "confirmation token" does not exist for value "%s"', $token));
@@ -107,10 +100,10 @@ class ResettingController extends Controller
 		$form->handleRequest($request);
 
 		if ($form->isSubmitted() && $form->isValid()) {
-			$userManager->updateUserPassword($user);
-			$userManager->updateUser($user);
+			$this->get('lch_user.manager')->updateUserPassword($user);
+			$this->get('lch_user.manager')->updateUser($user);
 
-			return $this->redirectToRoute('login');
+			return $this->redirectToRoute('app_login');
 		}
 
 		return $this->render('@App/security/reset-password.html.twig', [

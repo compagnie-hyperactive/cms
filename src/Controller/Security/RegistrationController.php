@@ -15,9 +15,9 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class RegistrationController extends Controller
 {
-	public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder, UserManager $userManager)
+	public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder)
 	{
-		$user = $userManager->create();
+		$user = $this->get('lch_user.manager')->create();
 		$form = $this->createForm($this->getParameter('lch_user.forms.registration'), $user);
 
 		$form->handleRequest($request);
@@ -31,11 +31,11 @@ class RegistrationController extends Controller
 			$em->flush();
 
 
-			return $this->redirectToRoute('login');
+			return $this->redirectToRoute('app_login');
 		}
 
 		return $this->render(
-			'@App/security/registration/register.html.twig',
+			'@App/security/registration.html.twig',
 			array('form' => $form->createView())
 		);
 	}

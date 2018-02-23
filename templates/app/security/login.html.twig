@@ -7,7 +7,7 @@
                 {% if error %}
                     <div class="error">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
                 {% endif %}
-                <form action="{{ path('lch_login') }}" method="post">
+                <form action="{{ path('app_login') }}" method="post">
 
                     <div class="form-group">
                         <input type="text" class="form-control" id="username" name="_username"
@@ -29,14 +29,14 @@
                             </div>
                         </div>
                         <div class="col-xl-4 col-md-6 d-none d-md-block text-right">
-                            <a class="btn btn-link" href="{{ path('lch_request_password') }}">Mot de passe oublié ?</a>
+                            <a class="btn btn-link" href="{{ path('app_request_password') }}">Mot de passe oublié ?</a>
                         </div>
                         <div class="col-xl-2 col-md-2 col-sm-6 col-6 text-right">
                             <button class="btn btn-primary" type="submit">Connexion</button>
                         </div>
                     </div>
                     <div class="row d-block d-md-none text-center">
-                        <a class="btn btn-link" href="{{ path('lch_request_password') }}">Mot de passe oublié ?</a>
+                        <a class="btn btn-link" href="{{ path('app_request_password') }}">Mot de passe oublié ?</a>
                     </div>
                 </form>
             </div>
