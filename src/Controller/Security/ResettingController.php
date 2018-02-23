@@ -39,7 +39,7 @@ class ResettingController extends Controller
 		$username = $request->request->get('username');
 
 		/** @var User $user */
-		$user = $this->get('lch_user.manager')->findUserByUsername($username);
+		$user = $this->get('lch_user.user_manager')->findUserByUsername($username);
 
 		if (null !== $user && !$user->isPasswordRequestNonExpired($this->getParameter('lch_user.resetting_ttl'))) {
 
@@ -51,7 +51,7 @@ class ResettingController extends Controller
 			$this->get('lch_user.mailer')->sendResetPasswordEmail($user);
 
 			$user->setPasswordRequestedAt(new \DateTime());
-			$this->get('lch_user.manager')->updateUser($user);
+			$this->get('lch_user.user_manager')->updateUser($user);
 		}
 
 		return new RedirectResponse($this->generateUrl('app_check_email', ['username' => $username]));
@@ -89,7 +89,7 @@ class ResettingController extends Controller
 	 */
 	public function reset(Request $request, $token)
 	{
-		$user = $this->get('lch_user.manager')->findUserByConfirmationToken($token);
+		$user = $this->get('lch_user.user_manager')->findUserByConfirmationToken($token);
 
 		if (null === $user) {
 			throw new NotFoundHttpException(sprintf('The user with "confirmation token" does not exist for value "%s"', $token));
@@ -100,8 +100,8 @@ class ResettingController extends Controller
 		$form->handleRequest($request);
 
 		if ($form->isSubmitted() && $form->isValid()) {
-			$this->get('lch_user.manager')->updateUserPassword($user);
-			$this->get('lch_user.manager')->updateUser($user);
+			$this->get('lch_user.user_manager')->updateUserPassword($user);
+			$this->get('lch_user.user_manager')->updateUser($user);
 
 			return $this->redirectToRoute('app_login');
 		}

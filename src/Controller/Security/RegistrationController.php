@@ -17,14 +17,14 @@ class RegistrationController extends Controller
 {
 	public function register(Request $request)
 	{
-		$user = $this->get('lch_user.manager')->create();
+		$user = $this->get('lch_user.user_manager')->create();
 		$form = $this->createForm($this->getParameter('lch_user.forms.registration'), $user);
 
 		$form->handleRequest($request);
 		if ($form->isSubmitted() && $form->isValid()) {
 
 			// Finalize registration
-			$this->get('lch_user.manager')->register($user);
+			$this->get('lch_user.user_manager')->register($user);
 
 			return $this->redirectToRoute('app_login');
 		}
