@@ -4,3 +4,4 @@ lch_user:
   resetting_ttl: 86400
   templates:
     login: '@App\security\login.html.twig'
+    registration: '@App\security\registration.html.twig'
