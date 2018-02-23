@@ -1,3 +1,0 @@
-lch_user:
-  resource: "@LchUserBundle/Resources/config/routing.yml"
-  prefix:   /
