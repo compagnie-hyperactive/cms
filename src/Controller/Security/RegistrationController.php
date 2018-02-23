@@ -15,7 +15,7 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class RegistrationController extends Controller
 {
-	public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder)
+	public function register(Request $request)
 	{
 		$user = $this->get('lch_user.manager')->create();
 		$form = $this->createForm($this->getParameter('lch_user.forms.registration'), $user);
@@ -23,13 +23,8 @@ class RegistrationController extends Controller
 		$form->handleRequest($request);
 		if ($form->isSubmitted() && $form->isValid()) {
 
-			$password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
-			$user->setPassword($password);
-
-			$em = $this->getDoctrine()->getManager();
-			$em->persist($user);
-			$em->flush();
-
+			// Finalize registration
+			$this->get('lch_user.manager')->register($user);
 
 			return $this->redirectToRoute('app_login');
 		}
