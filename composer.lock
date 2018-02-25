@@ -1111,6 +1111,7 @@
                 "backend",
                 "generator"
             ],
+            "abandoned": "easycorp/easyadmin-bundle",
             "time": "2018-02-10T11:44:58+00:00"
         },
         {
@@ -1235,12 +1236,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/compagnie-hyperactive/UserBundle.git",
-                "reference": "4ed2ef16f9f58b170d3326bcf365eed44a85b0e5"
+                "reference": "b0fa3497d34016c1ff483a2afa3460cb88d72523"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/compagnie-hyperactive/UserBundle/zipball/4ed2ef16f9f58b170d3326bcf365eed44a85b0e5",
-                "reference": "4ed2ef16f9f58b170d3326bcf365eed44a85b0e5",
+                "url": "https://api.github.com/repos/compagnie-hyperactive/UserBundle/zipball/b0fa3497d34016c1ff483a2afa3460cb88d72523",
+                "reference": "b0fa3497d34016c1ff483a2afa3460cb88d72523",
                 "shasum": ""
             },
             "require": {
@@ -1281,7 +1282,7 @@
                 "management",
                 "user"
             ],
-            "time": "2018-02-23T15:42:21+00:00"
+            "time": "2018-02-23T16:32:25+00:00"
         },
         {
             "name": "monolog/monolog",
