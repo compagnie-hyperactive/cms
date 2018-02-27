@@ -18,7 +18,7 @@ app_check_email:
     path: /resetting/check-email
     defaults: { _controller: 'App\Controller\Security\ResettingController::checkEmail' }
 
-app_reset_email:
+app_reset_password:
     path: /resetting/reset/{token}
     defaults: { _controller: 'App\Controller\Security\ResettingController::reset' }
 

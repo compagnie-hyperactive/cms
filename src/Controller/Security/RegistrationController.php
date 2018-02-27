@@ -9,22 +9,23 @@
 namespace App\Controller\Security;
 
 use Lch\UserBundle\Manager\UserManager;
+use Lch\UserBundle\Type\RegistrationType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class RegistrationController extends Controller
 {
-	public function register(Request $request)
+	public function register(Request $request, UserManager $userManager)
 	{
-		$user = $this->get('lch_user.user_manager')->create();
+		$user = $userManager->create();
 		$form = $this->createForm($this->getParameter('lch_user.forms.registration'), $user);
 
 		$form->handleRequest($request);
 		if ($form->isSubmitted() && $form->isValid()) {
 
 			// Finalize registration
-			$this->get('lch_user.user_manager')->register($user);
+			$userManager->register($user);
 
 			return $this->redirectToRoute('app_login');
 		}

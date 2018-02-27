@@ -3,5 +3,4 @@ lch_user:
     user: App\Entity\User\User
   resetting_ttl: 86400
   templates:
-    login: '@App\security\login.html.twig'
-    registration: '@App\security\registration.html.twig'
+    reset_email: '@App\security\emails\reset-password.html.twig'

@@ -34,3 +34,4 @@ services:
     App\Media\Listener\Doctrine\ImageDoctrineSubscriber:
         tags:
             - { name: doctrine.event_subscriber }
+

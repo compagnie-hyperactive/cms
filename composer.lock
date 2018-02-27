@@ -1236,12 +1236,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/compagnie-hyperactive/UserBundle.git",
-                "reference": "b0fa3497d34016c1ff483a2afa3460cb88d72523"
+                "reference": "8733cd18a2914e0e3991e32c6b0a1ba4b2ff6f87"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/compagnie-hyperactive/UserBundle/zipball/b0fa3497d34016c1ff483a2afa3460cb88d72523",
-                "reference": "b0fa3497d34016c1ff483a2afa3460cb88d72523",
+                "url": "https://api.github.com/repos/compagnie-hyperactive/UserBundle/zipball/8733cd18a2914e0e3991e32c6b0a1ba4b2ff6f87",
+                "reference": "8733cd18a2914e0e3991e32c6b0a1ba4b2ff6f87",
                 "shasum": ""
             },
             "require": {
@@ -1282,7 +1282,7 @@
                 "management",
                 "user"
             ],
-            "time": "2018-02-23T16:32:25+00:00"
+            "time": "2018-02-27T08:27:19+00:00"
         },
         {
             "name": "monolog/monolog",
