@@ -1,6 +1,6 @@
 framework:
     workflows:
-        editorial_publishing:
+        editorial:
             type: 'workflow'
             marking_store:
                 type: 'single_state'
