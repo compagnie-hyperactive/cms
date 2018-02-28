@@ -20,6 +20,10 @@ security:
                 default_target_path: /admin
                 username_parameter: login[username_or_email]
                 password_parameter: login[password]
+
+                success_handler:    app.security_handler
+                failure_handler:    app.security_handler
+
             anonymous: true
             logout:
                 path:   /admin/logout
