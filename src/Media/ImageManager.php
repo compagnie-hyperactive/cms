@@ -54,7 +54,7 @@ class ImageManager
         $fileName = md5(uniqid()).'.'.$file->guessExtension();
         $media->setFile($fileName);
 
-        $path = $this->getRelativePath();
+        $path = $this->generateRelativePath();
         $media->setpath($path);
 
         $this->fileManager->uploadFile($file, $fileName, $this->project_dir.$path);
@@ -103,7 +103,7 @@ class ImageManager
      *
      * @return string
      */
-    private function getRelativePath()
+    private function generateRelativePath()
     {
         $date = new \DateTime();
         $path = $this->image_directory.'/'.$date->format('Y/m');
