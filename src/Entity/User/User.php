@@ -22,6 +22,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class User extends BaseUser
 {
-	use Timestampable, Blameable;
+	use Timestampable;
 
 }
