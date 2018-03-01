@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "2364de9d15daa691e4811d36285cce70",
+    "content-hash": "42a731d478be37fcf9712a5c3cb61ee0",
     "packages": [
         {
             "name": "behat/transliterator",
@@ -888,16 +888,16 @@
         },
         {
             "name": "doctrine/orm",
-            "version": "v2.6.0",
+            "version": "v2.6.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/doctrine2.git",
-                "reference": "374e7ace49d864dad8cddbc55346447c8a6a2083"
+                "reference": "87ee409783a4a322b5597ebaae558661404055a7"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/374e7ace49d864dad8cddbc55346447c8a6a2083",
-                "reference": "374e7ace49d864dad8cddbc55346447c8a6a2083",
+                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/87ee409783a4a322b5597ebaae558661404055a7",
+                "reference": "87ee409783a4a322b5597ebaae558661404055a7",
                 "shasum": ""
             },
             "require": {
@@ -966,77 +966,20 @@
                 "database",
                 "orm"
             ],
-            "time": "2017-12-20T00:38:15+00:00"
+            "time": "2018-02-27T07:30:56+00:00"
         },
         {
-            "name": "egulias/email-validator",
-            "version": "2.1.3",
+            "name": "easycorp/easyadmin-bundle",
+            "version": "v1.17.12",
             "source": {
                 "type": "git",
-                "url": "https://github.com/egulias/EmailValidator.git",
-                "reference": "1bec00a10039b823cc94eef4eddd47dcd3b2ca04"
+                "url": "https://github.com/EasyCorp/EasyAdminBundle.git",
+                "reference": "f9114922faf5be8a4d5e70a774e672a67250baec"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/1bec00a10039b823cc94eef4eddd47dcd3b2ca04",
-                "reference": "1bec00a10039b823cc94eef4eddd47dcd3b2ca04",
-                "shasum": ""
-            },
-            "require": {
-                "doctrine/lexer": "^1.0.1",
-                "php": ">= 5.5"
-            },
-            "require-dev": {
-                "dominicsayers/isemail": "dev-master",
-                "phpunit/phpunit": "^4.8.35",
-                "satooshi/php-coveralls": "^1.0.1"
-            },
-            "suggest": {
-                "ext-intl": "PHP Internationalization Libraries are required to use the SpoofChecking validation"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "2.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Egulias\\EmailValidator\\": "EmailValidator"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Eduardo Gulias Davis"
-                }
-            ],
-            "description": "A library for validating emails against several RFCs",
-            "homepage": "https://github.com/egulias/EmailValidator",
-            "keywords": [
-                "email",
-                "emailvalidation",
-                "emailvalidator",
-                "validation",
-                "validator"
-            ],
-            "time": "2017-11-15T23:40:40+00:00"
-        },
-        {
-            "name": "javiereguiluz/easyadmin-bundle",
-            "version": "v1.17.11",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/javiereguiluz/EasyAdminBundle.git",
-                "reference": "828308c3bb8c564c51419318e64ce9b290e45aca"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/javiereguiluz/EasyAdminBundle/zipball/828308c3bb8c564c51419318e64ce9b290e45aca",
-                "reference": "828308c3bb8c564c51419318e64ce9b290e45aca",
+                "url": "https://api.github.com/repos/EasyCorp/EasyAdminBundle/zipball/f9114922faf5be8a4d5e70a774e672a67250baec",
+                "reference": "f9114922faf5be8a4d5e70a774e672a67250baec",
                 "shasum": ""
             },
             "require": {
@@ -1111,8 +1054,64 @@
                 "backend",
                 "generator"
             ],
-            "abandoned": "easycorp/easyadmin-bundle",
-            "time": "2018-02-10T11:44:58+00:00"
+            "time": "2018-02-24T09:24:55+00:00"
+        },
+        {
+            "name": "egulias/email-validator",
+            "version": "2.1.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/egulias/EmailValidator.git",
+                "reference": "1bec00a10039b823cc94eef4eddd47dcd3b2ca04"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/egulias/EmailValidator/zipball/1bec00a10039b823cc94eef4eddd47dcd3b2ca04",
+                "reference": "1bec00a10039b823cc94eef4eddd47dcd3b2ca04",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/lexer": "^1.0.1",
+                "php": ">= 5.5"
+            },
+            "require-dev": {
+                "dominicsayers/isemail": "dev-master",
+                "phpunit/phpunit": "^4.8.35",
+                "satooshi/php-coveralls": "^1.0.1"
+            },
+            "suggest": {
+                "ext-intl": "PHP Internationalization Libraries are required to use the SpoofChecking validation"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Egulias\\EmailValidator\\": "EmailValidator"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Eduardo Gulias Davis"
+                }
+            ],
+            "description": "A library for validating emails against several RFCs",
+            "homepage": "https://github.com/egulias/EmailValidator",
+            "keywords": [
+                "email",
+                "emailvalidation",
+                "emailvalidator",
+                "validation",
+                "validator"
+            ],
+            "time": "2017-11-15T23:40:40+00:00"
         },
         {
             "name": "jdorn/sql-formatter",
@@ -2545,16 +2544,16 @@
         },
         {
             "name": "symfony/flex",
-            "version": "v1.0.68",
+            "version": "v1.0.70",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/flex.git",
-                "reference": "0241b2acbb58df29e633b03fb56eb349a207613f"
+                "reference": "1f00c05d35523dc0ac52e4a457989a069be5a7a4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/flex/zipball/0241b2acbb58df29e633b03fb56eb349a207613f",
-                "reference": "0241b2acbb58df29e633b03fb56eb349a207613f",
+                "url": "https://api.github.com/repos/symfony/flex/zipball/1f00c05d35523dc0ac52e4a457989a069be5a7a4",
+                "reference": "1f00c05d35523dc0ac52e4a457989a069be5a7a4",
                 "shasum": ""
             },
             "require": {
@@ -2587,7 +2586,7 @@
                     "email": "fabien.potencier@gmail.com"
                 }
             ],
-            "time": "2018-01-31T19:34:57+00:00"
+            "time": "2018-02-22T07:00:47+00:00"
         },
         {
             "name": "symfony/form",
@@ -3846,16 +3845,16 @@
         },
         {
             "name": "symfony/swiftmailer-bundle",
-            "version": "v3.1.6",
+            "version": "v3.2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/swiftmailer-bundle.git",
-                "reference": "9728097df87e76e2db71fc41fd7d211c06daea3e"
+                "reference": "7756867d9b21231ae0ce746a6b861b7e293cc885"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/swiftmailer-bundle/zipball/9728097df87e76e2db71fc41fd7d211c06daea3e",
-                "reference": "9728097df87e76e2db71fc41fd7d211c06daea3e",
+                "url": "https://api.github.com/repos/symfony/swiftmailer-bundle/zipball/7756867d9b21231ae0ce746a6b861b7e293cc885",
+                "reference": "7756867d9b21231ae0ce746a6b861b7e293cc885",
                 "shasum": ""
             },
             "require": {
@@ -3877,7 +3876,7 @@
             "type": "symfony-bundle",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "3.1-dev"
+                    "dev-master": "3.2-dev"
                 }
             },
             "autoload": {
@@ -3904,7 +3903,7 @@
             ],
             "description": "Symfony SwiftmailerBundle",
             "homepage": "http://symfony.com",
-            "time": "2017-10-23T15:15:11+00:00"
+            "time": "2018-02-14T08:09:24+00:00"
         },
         {
             "name": "symfony/translation",
