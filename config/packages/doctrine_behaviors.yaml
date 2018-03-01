@@ -1,6 +1,6 @@
 knp_doctrine_behaviors:
     timestampable:  true
-    blameable:      true
+    blameable:      false
     geocodable:     false
     loggable:       false
     sluggable:      false
