@@ -16,5 +16,23 @@ trait Titlable {
 	 * @var string $title
 	 * @ORM\Column(type="string")
 	 */
-	protected $title;
+	protected $title = "";
+
+	/**
+	 * @return string
+	 */
+	public function getTitle(): string {
+		return $this->title;
+	}
+
+	/**
+	 * @param string $title
+	 *
+	 * @return $this
+	 */
+	public function setTitle( string $title ): self {
+		$this->title = $title;
+
+		return $this;
+	}
 }
