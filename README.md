@@ -1,4 +1,4 @@
-##EasyAdminBundle Configuration
+## EasyAdminBundle Configuration
 
 ### Entity Specific controller
 ```
@@ -25,3 +25,8 @@ Event:
         fields:
             - { property: headBandImage, type: 'App\Form\Type\AddOrChooseImageType', label: 'Image' }
 ```
+
+## User handling
+
+### Redirect after login/auth failure
+- `Listener/Security/SecurityHandler` for custom redirect after login/auth failure

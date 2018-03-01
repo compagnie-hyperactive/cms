@@ -1,0 +1,6 @@
+lch_user:
+  classes:
+    user: App\Entity\User\User
+  resetting_ttl: 86400
+  templates:
+    reset_email: '@App\security\emails\reset-password.html.twig'

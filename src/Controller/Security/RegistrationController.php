@@ -8,36 +8,31 @@
 
 namespace App\Controller\Security;
 
-use App\Entity\User\User;
-use App\Form\Type\Security\RegistrationType;
+use Lch\UserBundle\Manager\UserManager;
+use Lch\UserBundle\Type\RegistrationType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
 
 class RegistrationController extends Controller
 {
-    public function register(Request $request, UserPasswordEncoderInterface $passwordEncoder)
-    {
-        $user = new User();
-        $form = $this->createForm(RegistrationType::class, $user);
+	public function register(Request $request, UserManager $userManager)
+	{
+		$user = $userManager->create();
+		$form = $this->createForm($this->getParameter('lch_user.forms.registration'), $user);
 
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
+		$form->handleRequest($request);
+		if ($form->isSubmitted() && $form->isValid()) {
 
-            $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
-            $user->setPassword($password);
+			// Finalize registration
+			$userManager->register($user);
 
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($user);
-            $em->flush();
+			return $this->redirectToRoute('app_login');
+		}
 
-
-            return $this->redirectToRoute('login');
-        }
-
-        return $this->render(
-            'Security/registration/register.html.twig',
-            array('form' => $form->createView())
-        );
-    }
+		return $this->render(
+			'@App/security/registration.html.twig',
+			array('form' => $form->createView())
+		);
+	}
 }

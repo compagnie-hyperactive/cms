@@ -1,0 +1,28 @@
+# Security
+app_login:
+    path: /admin/login
+    defaults: { _controller: 'App\Controller\Security\SecurityController::login' }
+app_logout:
+    path: /admin/logout
+
+# Resetting
+app_request_password:
+    path: /resetting/request-password
+    defaults: { _controller: 'App\Controller\Security\ResettingController::requestPassword' }
+
+app_send_email:
+    path: /resetting/send-email
+    defaults: { _controller: 'App\Controller\Security\ResettingController::sendEmail' }
+
+app_check_email:
+    path: /resetting/check-email
+    defaults: { _controller: 'App\Controller\Security\ResettingController::checkEmail' }
+
+app_reset_password:
+    path: /resetting/reset/{token}
+    defaults: { _controller: 'App\Controller\Security\ResettingController::reset' }
+
+# Registration
+app_registration:
+    path: /registration
+    defaults: { _controller: 'App\Controller\Security\RegistrationController::register'}

@@ -8,7 +8,9 @@
 
 namespace App\Entity\User;
 
-use App\User\Model\User as BaseUser;
+use Knp\DoctrineBehaviors\Model\Blameable\Blameable;
+use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
+use Lch\UserBundle\Entity\User as BaseUser;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -20,5 +22,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class User extends BaseUser
 {
+	use Timestampable, Blameable;
 
 }

@@ -8,8 +8,8 @@
 
 namespace App\Media\Model;
 
-use App\Behavior\Timestampable;
 use Doctrine\ORM\Mapping as ORM;
+use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 
 /**
  * Class Image

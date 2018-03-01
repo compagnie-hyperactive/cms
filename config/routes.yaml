@@ -2,31 +2,14 @@ index:
     path: /
     defaults: { _controller: 'App\Controller\MainController::index' }
 
-# Security
-login:
-    path: /admin/login
-    defaults: { _controller: 'App\Controller\Security\SecurityController::login' }
-logout:
-    path: /admin/logout
+app_front:
+  resource: "routes/front-app.yaml"
+  prefix:   /
 
-# Resetting
-request_password:
-    path: /resetting/request-password
-    defaults: { _controller: 'App\Controller\Security\ResettingController::requestPassword' }
+app_back:
+  resource: "routes/back-app.yaml"
+  prefix:   /admin
 
-send_email:
-    path: /resetting/send-email
-    defaults: { _controller: 'App\Controller\Security\ResettingController::sendEmail' }
-
-check_email:
-    path: /resetting/check-email
-    defaults: { _controller: 'App\Controller\Security\ResettingController::checkEmail' }
-
-reset_email:
-    path: /resetting/reset/{token}
-    defaults: { _controller: 'App\Controller\Security\ResettingController::reset' }
-
-# Registration
-registration:
-    path: /registration
-    defaults: { _controller: 'App\Controller\Security\RegistrationController::register'}
+cms_back:
+  resource: "routes/back-cms.yaml"
+  prefix:   /admin
