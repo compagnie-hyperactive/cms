@@ -29,7 +29,7 @@ easy_admin:
                 - { type: 'group', css_class: 'col-xs-9', label: 'admin.post.general.title' }
                 - { property: title }
                 - { type: 'group', css_class: 'col-xs-3', label: 'admin.post.status.title' }
-                - { property: status }
+                - { property: status, type: 'choice', type_options: {choices: { draft: draft, published: published } } }
                 - { type: 'group', css_class: 'col-xs-3 pull-right', label: 'admin.post.image.title' }
                 - { property: headImage, type: 'App\Form\Type\AddOrChooseImageType', label: 'Image' }
 
