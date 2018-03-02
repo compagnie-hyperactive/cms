@@ -36,3 +36,7 @@ services:
       class: App\Listener\Security\SecurityHandler
 
     App\Listener\Security\SecurityHandler: '@app.security_handler'
+
+    App\Media\Listener\Doctrine\ImageDoctrineSubscriber:
+        tags:
+            - { name: doctrine.event_subscriber }
