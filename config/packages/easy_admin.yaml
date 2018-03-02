@@ -14,9 +14,9 @@ easy_admin:
             - 'form/media.html.twig'
         menu:
             - { label: 'admin.menu.dashboard', route: 'admin_dashboard', default: true }
+            - { entity: 'Post', label: 'admin.menu.post' }
             - { entity: 'Image', label: 'admin.menu.image' }
-            - { entity: 'Event', label: 'admin.menu.event' }
-            - { entity: 'Article', label: 'admin.menu.article' }
+#            - { entity: 'Event', label: 'admin.menu.event' }
     entities:
         Post:
             class: App\Entity\Editorial\Post
