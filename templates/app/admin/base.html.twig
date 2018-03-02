@@ -1,0 +1,8 @@
+{% extends '@EasyAdmin/default/layout.html.twig' %}
+
+{% block user_menu_dropdown %}
+    <li>
+        <a href="{{ path('easyadmin', {'entity': 'User', 'action': 'selfShow'}) }}">Mon compte</a>
+    </li>
+    {{ parent() }}
+{% endblock user_menu_dropdown %}

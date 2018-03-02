@@ -1,5 +1,7 @@
 easy_admin:
     design:
+        templates:
+            layout: '@App/admin/base.html.twig'
         assets:
             css:
                 - '/css/modal.css'  # Used for media popin
@@ -78,3 +80,6 @@ easy_admin:
                     - { property: title }
                     - date
                     - { property: headBandImage, type: 'App\Form\Type\AddOrChooseImageType', label: 'Image' }
+        User:
+            class: App\Entity\User\User
+            controller: App\Controller\Admin\User\UserController
