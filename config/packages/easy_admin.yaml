@@ -30,6 +30,7 @@ easy_admin:
               fields:
                 - { type: 'group', css_class: 'col-xs-9', label: 'admin.post.general.title' }
                 - { property: title }
+                - { property: content, type: 'ckeditor' }
                 - { type: 'group', css_class: 'col-xs-3', label: 'admin.post.status.title' }
                 - { property: status, type: 'choice', type_options: {choices: { draft: draft, published: published } } }
                 - { type: 'group', css_class: 'col-xs-3 pull-right', label: 'admin.post.image.title' }

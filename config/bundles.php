@@ -15,4 +15,5 @@ return [
     Lch\UserBundle\LchUserBundle::class => ['all' => true],
     Knp\DoctrineBehaviors\Bundle\DoctrineBehaviorsBundle::class => ['all' => true],
     EasyCorp\Bundle\EasyAdminBundle\EasyAdminBundle::class => ['all' => true],
+    Ivory\CKEditorBundle\IvoryCKEditorBundle::class => ['all' => true],
 ];

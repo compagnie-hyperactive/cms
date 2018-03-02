@@ -36,11 +36,34 @@ class Post {
 	 */
 	protected $id;
 	/**
+	 * @var string
+	 * @ORM\Column(type="text")
+	 */
+	protected $content = "";
+	/**
 	 * @var Image
 	 * @ORM\ManyToOne(targetEntity="App\Entity\Media\Image")
 	 * @ORM\JoinColumn(nullable=true)
 	 */
 	private $headImage;
+
+	/**
+	 * @return string
+	 */
+	public function getContent(): string {
+		return $this->content;
+	}
+
+	/**
+	 * @param string $content
+	 *
+	 * @return Post
+	 */
+	public function setContent( string $content ): Post {
+		$this->content = $content;
+
+		return $this;
+	}
 
 	/**
 	 * @return Image
