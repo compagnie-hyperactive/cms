@@ -40,7 +40,7 @@ class ImageDoctrineSubscriber implements EventSubscriber
             'preUpdate',
 //            'postUpdate',
 //            'preRemove',
-//            'postRemove',
+            'postRemove',
         );
     }
 
@@ -105,6 +105,17 @@ class ImageDoctrineSubscriber implements EventSubscriber
             $media->setFile($precedentFile);
         }
     }
+
+    public function postRemove(LifecycleEventArgs $args)
+    {
+        /** @var ImageInterface $image */
+        if (false === ($image = $this->getImage($args))) {
+            return;
+        }
+
+        $this->imageManager->deleteImageFile($image);
+    }
+
 
     /**
      * @param LifecycleEventArgs $args

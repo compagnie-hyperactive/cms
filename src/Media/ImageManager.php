@@ -99,6 +99,14 @@ class ImageManager
     }
 
     /**
+     * @param ImageInterface $media
+     */
+    public function deleteImageFile(ImageInterface $media)
+    {
+        $this->fileManager->deleteFile($media->getFile());
+    }
+
+    /**
      * Generate relative path to store file
      *
      * @return string
