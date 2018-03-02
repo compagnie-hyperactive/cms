@@ -32,6 +32,10 @@ easy_admin:
                 - { property: status, type: 'choice', type_options: {choices: { draft: draft, published: published } } }
                 - { type: 'group', css_class: 'col-xs-3 pull-right', label: 'admin.post.image.title' }
                 - { property: headImage, type: 'App\Form\Type\AddOrChooseImageType', label: 'Image' }
+                - { type: 'group', css_class: 'col-xs-12', label: 'admin.post.seo.title' }
+                - { property: slug, type: 'text' }
+                - { property: seoTitle, type: 'text' }
+                - { property: seoDescription, type: 'text' }
 
 #        Article:
 #            class: App\Entity\Article

@@ -14,6 +14,9 @@ use App\Entity\Media\Image;
 use Doctrine\ORM\Mapping as ORM;
 use Knp\DoctrineBehaviors\Model\Blameable\Blameable;
 use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
+use Lch\SeoBundle\Behaviour\Seoable;
+use Lch\SeoBundle\Model\OpenGraph;
+use Lch\SeoBundle\Model\SeoInterface;
 
 /**
  * Class Post
@@ -22,11 +25,12 @@ use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
  * @ORM\Table
  * @ORM\Entity
  */
-class Post {
+class Post implements SeoInterface {
 	use Timestampable,
 		Blameable,
 		Titlable,
-		Statusable;
+		Statusable,
+		Seoable;
 
 	/**
 	 * @var int $id
@@ -35,6 +39,7 @@ class Post {
 	 * @ORM\GeneratedValue(strategy="AUTO")
 	 */
 	protected $id;
+
 	/**
 	 * @var Image
 	 * @ORM\ManyToOne(targetEntity="App\Entity\Media\Image")
@@ -65,5 +70,53 @@ class Post {
 	 */
 	public function getId() {
 		return $this->id;
+	}
+
+	/**
+	 * @inheritdoc
+	 */
+	public function getSluggableFields() {
+		return [
+			'title'
+		];
+	}
+
+	/**
+	 * @return string the route name to generate detail page URL
+	 */
+	public function getRouteName() {
+		return "app_post_show";
+	}
+
+	/**
+	 * @return array all fields needed to create a matching entity route, on a key => value basis
+	 * key is the route placeholder name, value the entity field linked
+	 */
+	public function getRouteFields() {
+		return ['slug' => 'slug'];
+	}
+
+	/**
+	 * @return string the default title value to use if title not set on entity saving
+	 */
+	public function getSeoTitleDefaultValue() {
+		return $this->title;
+	}
+
+	/**
+	 * @return OpenGraph $openGraph
+	 */
+	public function getOpenGraphData() {
+		$openGraph = new OpenGraph();
+		$openGraph->setTitle($this->seoTitle);
+		$openGraph->setType("Solution");
+		$openGraph->setDescription($this->seoDescription);
+
+		if($this->headImage instanceof Image) {
+			$imageData = explode('/public', $this->getHeadImage()->getFile());
+			$openGraph->setImage(array_pop($imageData));
+		}
+
+		return $openGraph;
 	}
 }
