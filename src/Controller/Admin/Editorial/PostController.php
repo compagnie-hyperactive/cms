@@ -8,7 +8,7 @@
 
 namespace App\Controller\Admin\Editorial;
 
-use EasyCorp\Bundle\EasyAdminBundle\Controller\AdminController as BaseAdminController;
+use App\Controller\Admin\BaseAdminController;
 
 class PostController  extends BaseAdminController {
 
