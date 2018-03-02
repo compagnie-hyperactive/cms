@@ -18,26 +18,41 @@ easy_admin:
             - { entity: 'Event', label: 'admin.menu.event' }
             - { entity: 'Article', label: 'admin.menu.article' }
     entities:
-        Article:
-            class: App\Entity\Article
-            controller: App\Controller\Admin\ArticleController
-            templates:
-                list: '@App\admin\article\list.html.twig'
+        Post:
+            class: App\Entity\Editorial\Post
             list:
-                fields:
-                    - { property: id }
-                    - { property: title }
-                    - { property: published }
+              - { property: id }
+              - { property: title }
+              - { property: status }
             form:
-                fields:
-                    - { property: title }
-                    - { property: headImage, type: 'App\Form\Type\AddOrChooseImageType', label: 'Image' }
-                    - { property: published, type_options: { required: false } }
-                    - { property: content }
-            search:
-                fields:
-                   - { property: 'title', searchField: 'title' }
-                   - { property: 'published', searchField: 'status'}
+              fields:
+                - { type: 'group', css_class: 'col-xs-9', label: 'admin.post.general.title' }
+                - { property: title }
+                - { type: 'group', css_class: 'col-xs-3', label: 'admin.post.status.title' }
+                - { property: status }
+                - { type: 'group', css_class: 'col-xs-3 pull-right', label: 'admin.post.image.title' }
+                - { property: headImage, type: 'App\Form\Type\AddOrChooseImageType', label: 'Image' }
+
+#        Article:
+#            class: App\Entity\Article
+#            controller: App\Controller\Admin\ArticleController
+#            templates:
+#                list: '@App\admin\article\list.html.twig'
+#            list:
+#                fields:
+#                    - { property: id }
+#                    - { property: title }
+#                    - { property: published }
+#            form:
+#                fields:
+#                    - { property: title }
+#                    - { property: headImage, type: 'App\Form\Type\AddOrChooseImageType', label: 'Image' }
+#                    - { property: published, type_options: { required: false } }
+#                    - { property: content }
+#            search:
+#                fields:
+#                   - { property: 'title', searchField: 'title' }
+#                   - { property: 'published', searchField: 'status'}
         Image:
             class: App\Entity\Media\Image
             controller: App\Controller\Media\Admin\ImageController
