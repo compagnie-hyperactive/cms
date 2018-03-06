@@ -1,6 +1,7 @@
 twig:
     paths:
       '%kernel.project_dir%/templates/app': App
+      '%kernel.project_dir%/vendor/lch/seo-bundle/Resources/views': LchSeoBundle
 #      '%kernel.project_dir%/templates/cms': Cms
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
