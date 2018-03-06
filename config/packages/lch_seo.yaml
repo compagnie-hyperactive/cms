@@ -1,0 +1,35 @@
+lch_seo:
+  specific:
+#    ipc_homepage:
+#      tags:
+#        title: Centre Technique Industriel de la Plasturgie et des Composites - IPC
+#        description: IPC est le Centre Technique Industriel dont l’expertise est dédiée à l’innovation plastique et composite pour l'industrie nationale.
+#      sitemap:
+#        loc: /
+#        priority: 1.0
+#    ipc_event_list:
+#      tags:
+#        title: Tous les événements - IPC
+#        description: Consultez la liste des prochains événements et commissions professionnelles réservés aux bénéficiaires IPC ou ouverts à tous.
+#      sitemap:
+#        loc: /evenement/liste/evenements
+#        priority: 0.9
+#    ipc_post_list:
+#      tags:
+#        title: Toutes les actualités - IPC
+#        description: Suivez toute l'actualité IPC en retrouvant nos communiqués de presse, études, veilles, partenariats...
+#      sitemap:
+#        loc: /actualite/liste/actualites
+#        priority: 0.9
+#    ipc_contact:
+#      tags:
+#        title: Contactez-nous - IPC
+#        description: Une question ? Un projet ? Prenez contact avec les experts IPC en remplissant le formulaire en ligne à votre disposition.
+#      sitemap:
+#        loc: /contact
+#        priority: 0.9
+  sitemap:
+    step: 0.1
+    entities:
+      App\Entity\Editorial\Post:
+      App\Entity\Editorial\Page:

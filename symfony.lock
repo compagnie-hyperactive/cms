@@ -98,6 +98,9 @@
     "knplabs/doctrine-behaviors": {
         "version": "1.5.0"
     },
+    "lch/seo-bundle": {
+        "version": "dev-develop"
+    },
     "lch/user-bundle": {
         "version": "dev-master"
     },
