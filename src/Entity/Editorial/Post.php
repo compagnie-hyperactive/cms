@@ -17,6 +17,7 @@ use Knp\DoctrineBehaviors\Model\Timestampable\Timestampable;
 use Lch\SeoBundle\Behaviour\Seoable;
 use Lch\SeoBundle\Model\OpenGraph;
 use Lch\SeoBundle\Model\SeoInterface;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * Class Post
@@ -24,6 +25,7 @@ use Lch\SeoBundle\Model\SeoInterface;
  *
  * @ORM\Table
  * @ORM\Entity
+ * @UniqueEntity("slug")
  */
 class Post implements SeoInterface {
 	use Timestampable,
