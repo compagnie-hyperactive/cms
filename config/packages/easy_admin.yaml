@@ -2,16 +2,20 @@ easy_admin:
     design:
         assets:
             css:
+                - '/build/admin.css'
                 - '/css/modal.css'  # Used for media popin
                 - '/css/tabs.css'   # Used for media popin
                 - '/css/admin.css'
             js:
+                - '/build/admin.js'
                 - '/js/modal.js'    # Used for media popin
                 - '/js/tabs.js'     # Used for media popin
                 - '/js/media.js'
+                - '/bundles/lchseo/js/seo.js'
         form_theme:
             - 'horizontal'
             - 'form/media.html.twig'
+            - '@LchSeoBundle/form/fields.html.twig'
         menu:
             - { label: 'admin.menu.dashboard', route: 'admin_dashboard', default: true }
             - { entity: 'Post', label: 'admin.menu.post' }
@@ -33,7 +37,7 @@ easy_admin:
                 - { type: 'group', css_class: 'col-xs-3 pull-right', label: 'admin.post.image.title' }
                 - { property: headImage, type: 'App\Form\Type\AddOrChooseImageType', label: 'Image' }
                 - { type: 'group', css_class: 'col-xs-12', label: 'admin.post.seo.title' }
-                - { property: slug, type: 'text' }
+                - { property: slug, type: 'Lch\SeoBundle\Form\SlugType' }
                 - { property: seoTitle, type: 'text' }
                 - { property: seoDescription, type: 'text' }
 
