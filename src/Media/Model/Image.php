@@ -50,6 +50,12 @@ abstract class Image implements ImageInterface
     protected $path;
 
     /**
+     * @var string
+     * @ORM\Column(type="string", length=150, nullable=true)
+     */
+    protected $thumbnail;
+
+    /**
      * @inheritdoc
      */
     public function __toString()
@@ -113,6 +119,24 @@ abstract class Image implements ImageInterface
     public function setPath(string $path)
     {
         $this->path = $path;
+        return $this;
+    }
+
+    /**
+     * @return string
+     */
+    public function getThumbnail()
+    {
+        return $this->thumbnail;
+    }
+
+    /**
+     * @param string $thumbnailName
+     * @return self
+     */
+    public function setThumbnail(string $thumbnailName)
+    {
+        $this->thumbnail = $thumbnailName;
         return $this;
     }
 }

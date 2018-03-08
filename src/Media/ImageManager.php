@@ -9,12 +9,16 @@
 namespace App\Media;
 
 use App\Media\Model\ImageInterface;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class ImageManager
 {
     /** @var FileManager  */
     private $fileManager;
+
+    /** @var ThumbnailGenerator */
+    private $thumbnailGenerator;
 
     /** @var string  */
     private $image_directory;
@@ -25,16 +29,19 @@ class ImageManager
     /**
      * DocumentManager constructor.
      * @param FileManager $fileManager
+     * @param ThumbnailGenerator $thumbnailGenerator
      * @param string $projectDir
      * @param string $image_directory
      */
     public function __construct(
         FileManager $fileManager,
+        ThumbnailGenerator $thumbnailGenerator,
         $projectDir,
         $image_directory
     )
     {
         $this->fileManager = $fileManager;
+        $this->thumbnailGenerator = $thumbnailGenerator;
         $this->project_dir = $projectDir.'/public';
         $this->image_directory = $image_directory;
     }
@@ -58,6 +65,12 @@ class ImageManager
         $media->setpath($path);
 
         $this->fileManager->uploadFile($file, $fileName, $this->project_dir.$path);
+
+        // Generate thumbnail
+        $thumbnailFile = $this->thumbnailGenerator->generateThumbnailFromImage($this->project_dir.$path, $fileName);
+        if ($thumbnailFile instanceof File) {
+            $media->setThumbnail($thumbnailFile->getFilename());
+        }
     }
 
     /**
@@ -78,13 +91,16 @@ class ImageManager
      * Delete precedent file
      *
      * @param ImageInterface $media
-     * @param $precedentFile
+     * @param string $filename
      */
-    public function deletePrecedentFile(ImageInterface $media, $precedentFile)
+    public function delete(ImageInterface $media, $filename)
     {
-        $filePath = $this->project_dir.$media->getpath().'/'.$precedentFile;
+        $filePath = $this->project_dir.$media->getpath().'/';
 
-        $this->fileManager->deleteFileByPath($filePath);
+        $this->fileManager->deleteFileByPath($filePath.'/'.$filename);
+
+        // Delete thumbnail
+        $this->deleteThumbnail($media);
     }
 
     /**
@@ -104,6 +120,13 @@ class ImageManager
     public function deleteImageFile(ImageInterface $media)
     {
         $this->fileManager->deleteFile($media->getFile());
+    }
+
+    public function deleteThumbnail(ImageInterface $media)
+    {
+        $filePath = $this->project_dir.$media->getpath().'/';
+
+        $this->fileManager->deleteFileByPath($filePath.$media->getThumbnail());
     }
 
     /**

@@ -94,7 +94,7 @@ class ImageDoctrineSubscriber implements EventSubscriber
         // If get is different from null, the file has been modified
         if ($media->getFile() instanceof UploadedFile) {
             // Delete precedent File
-            $this->imageManager->deletePrecedentFile($media, $precedentFile);
+            $this->imageManager->delete($media, $precedentFile);
 
             // Upload Document File
             $this->imageManager->uploadImageFile($media);
@@ -114,6 +114,7 @@ class ImageDoctrineSubscriber implements EventSubscriber
         }
 
         $this->imageManager->deleteImageFile($image);
+        $this->imageManager->deleteThumbnail($image);
     }
 
 

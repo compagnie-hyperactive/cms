@@ -54,4 +54,15 @@ interface ImageInterface
      * @return ImageInterface
      */
     public function setPath(string $path);
+
+    /**
+     * @return string
+     */
+    public function getThumbnail();
+
+    /**
+     * @param string $thumbnailName
+     * @return ImageInterface
+     */
+    public function setThumbnail(string $thumbnailName);
 }
