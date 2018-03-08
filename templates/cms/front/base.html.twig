@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="fr" {% block html_tags %}{% endblock html_tags %}>
+    <head>
+        <!-- Required meta tags -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        {% block meta %}{% endblock %}
+        {% block seo %}
+            {{ renderSeoTags(app.request) }}
+        {% endblock seo %}
+
+        <link rel="stylesheet" href="{{ asset('build/app.css') }}">
+        {% block styles %}{% endblock %}
+    </head>
+    <body>
+        <div class="container-fluid">
+            {% block content %}{% endblock %}
+        </div>
+        <script src="{{ asset('build/app.js') }}"></script>
+        {% block javascripts %}{% endblock %}
+    </body>
+</html>

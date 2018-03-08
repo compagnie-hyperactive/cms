@@ -1,0 +1,5 @@
+app_post_show:
+    path:     /articles/{slug}
+    defaults: { _controller: 'App\Controller\Front\Editorial\PostController::show' }
+    # Allow "/" in parameter to simulate sub-folder architecture
+    requirements: { slug: ".+" }
