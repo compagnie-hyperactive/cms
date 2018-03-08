@@ -16,6 +16,7 @@ easy_admin:
                 - '/bundles/lchseo/js/seo.js'
         form_theme:
             - 'horizontal'
+            - 'form/bootstrap_3_layout.html.twig'
             - 'form/media.html.twig'
             - '@LchSeoBundle/form/fields.html.twig'
         menu:
@@ -35,10 +36,13 @@ easy_admin:
                 - { type: 'group', css_class: 'col-xs-9', label: 'admin.post.general.title' }
                 - { property: title }
                 - { property: content, type: 'ckeditor' }
+
                 - { type: 'group', css_class: 'col-xs-3', label: 'admin.post.status.title' }
                 - { property: status, type: 'choice', type_options: {choices: { draft: draft, published: published } } }
+
                 - { type: 'group', css_class: 'col-xs-3 pull-right', label: 'admin.post.image.title' }
                 - { property: headImage, type: 'App\Form\Type\AddOrChooseImageType', label: 'Image' }
+
                 - { type: 'group', css_class: 'col-xs-12', label: 'admin.post.seo.title' }
                 - { property: slug, type: 'Lch\SeoBundle\Form\SlugType' }
                 - { property: seoTitle, type: 'text' }
