@@ -43,6 +43,9 @@ easy_admin:
                 - { type: 'group', css_class: 'col-xs-3 pull-right', label: 'admin.post.image.title' }
                 - { property: headImage, type: 'App\Form\Type\AddOrChooseImageType', label: 'Image' }
 
+                - { type: 'group', css_class: 'col-xs-6', label: 'admin.post.image.title' }
+                - { property: listImage, type: 'App\Form\Type\AddOrChooseImageType', label: 'Image' }
+
                 - { type: 'group', css_class: 'col-xs-12', label: 'admin.post.seo.title' }
                 - { property: slug, type: 'Lch\SeoBundle\Form\SlugType' }
                 - { property: seoTitle, type: 'text' }

@@ -8,7 +8,8 @@ jQuery(document).ready(function($) {
         var $tabsListContainer = '.js-tablist';
 
         // Find opened tab
-        var $selectedTab = $body.find($tabsListContainer + ' a[aria-selected=true]');
+        var $selectedTab = $(this).closest($tabsListContainer + ' a[aria-selected=true]');
+        // var $selectedTab = $body.find($tabsListContainer + ' a[aria-selected=true]');
 
         // Find tab content container
         var $tabContainer = $('#'+$($selectedTab).attr('aria-controls'));

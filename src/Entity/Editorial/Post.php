@@ -47,12 +47,20 @@ class Post implements SeoInterface {
 	 * @ORM\Column(type="text")
 	 */
 	protected $content = "";
+
 	/**
 	 * @var Image
 	 * @ORM\ManyToOne(targetEntity="App\Entity\Media\Image")
 	 * @ORM\JoinColumn(nullable=true)
 	 */
 	private $headImage;
+
+    /**
+     * @var Image
+     * @ORM\ManyToOne(targetEntity="App\Entity\Media\Image")
+     * @ORM\JoinColumn(nullable=true)
+     */
+    private $listImage;
 
 	/**
 	 * @return string
@@ -89,6 +97,24 @@ class Post implements SeoInterface {
 
 		return $this;
 	}
+
+    /**
+     * @return Image
+     */
+    public function getListImage() {
+        return $this->listImage;
+    }
+
+    /**
+     * @param Image $listImage
+     *
+     * @return Post
+     */
+    public function setListImage( Image $listImage ): Post {
+        $this->listImage = $listImage;
+
+        return $this;
+    }
 
 	/**
 	 * @return int
