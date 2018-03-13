@@ -5,17 +5,17 @@ jQuery(document).ready(function($) {
     $body.on('click', '.media-popin-with-tabs', function(event) {
 
         // List Tabs Container
-        var $tabsListContainer = '.js-tablist';
-
+        var $tabsListContainer = $(this).attr('data-modal-content-id') + '_tabcontainer';
+        
         // Find opened tab
-        var $selectedTab = $(this).closest($tabsListContainer + ' a[aria-selected=true]');
-        // var $selectedTab = $body.find($tabsListContainer + ' a[aria-selected=true]');
+        var $selectedTab = $('.' + $tabsListContainer).find('a[aria-selected=true]');
 
         // Find tab content container
         var $tabContainer = $('#'+$($selectedTab).attr('aria-controls'));
 
         // Where to find content to load
         var url = $($selectedTab).attr('data-url');
+
 
         $.ajax({
             type: 'POST',

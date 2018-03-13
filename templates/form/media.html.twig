@@ -37,7 +37,7 @@
                     {{ form_widget(form) }}
                     <div id="media_image_selection_{{ id }}" class="hidden">
                         <div class="js-tabs" id="media-field-reference" data-field-reference="{{ id }}">
-                            <ul class="js-tablist" data-hx="h2" data-tabs-prefix-class="example-tabs">
+                            <ul class="js-tablist media_image_selection_{{ id }}_tabcontainer" data-hx="h2" data-tabs-prefix-class="example-tabs">
                                 <li class="js-tablist__item">
                                     <a href="#id_first_{{ id }}" id="label_id_first_{{ id }}" class="js-tablist__link" data-url="/admin/?action=newAjax&entity=Image">Ajouter un média</a>
                                 </li>
