@@ -145,8 +145,10 @@ class ImageController extends BaseAdminController
         $event = new ImageDownloadEvent($entity);
         $this->get('event_dispatcher')->dispatch(ImageEvents::IMAGE_DOWNLOAD, $event);
 
+        $filename = $this->imageManager->sanitizeOutputName($event->getFilename().'.'.$event->getFile()->getExtension());
+
         // Return file
-        return $this->file($event->getFile(), $event->getFilename().'.'.$event->getFile()->getExtension());
+        return $this->file($event->getFile(), $filename);
     }
 
 }
