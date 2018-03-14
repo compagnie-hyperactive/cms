@@ -8,7 +8,6 @@
 
 namespace App\Entity\Media;
 
-use App\Behavior\Timestampable;
 use Doctrine\ORM\Mapping as ORM;
 use App\Media\Model\Image as BaseImage;
 
