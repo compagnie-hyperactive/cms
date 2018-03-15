@@ -11,5 +11,6 @@ namespace App\Media;
 
 class ImageEvents
 {
-    const IMAGE_DOWNLOAD = "image.download";
+    const PRE_DOWNLOAD = "image.pre.download";
+    const POST_DOWNLOAD = "image.post.download";
 }

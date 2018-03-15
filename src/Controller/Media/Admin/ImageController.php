@@ -138,12 +138,15 @@ class ImageController extends BaseAdminController
         /** @var Image $entity */
         $entity = $easyadmin['item'];
 
+        $event = new ImageDownloadEvent($entity);
+        $this->get('event_dispatcher')->dispatch(ImageEvents::PRE_DOWNLOAD, $event);
+
         // Check if user is authorized to download this document
         //$this->denyAccessUnlessGranted('download', $entity);
 
         // Dispatch DocumentDownloadEvent
         $event = new ImageDownloadEvent($entity);
-        $this->get('event_dispatcher')->dispatch(ImageEvents::IMAGE_DOWNLOAD, $event);
+        $this->get('event_dispatcher')->dispatch(ImageEvents::POST_DOWNLOAD, $event);
 
         $filename = $this->imageManager->sanitizeOutputName($event->getFilename().'.'.$event->getFile()->getExtension());
 
