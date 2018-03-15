@@ -23,7 +23,7 @@ easy_admin:
             - { label: 'admin.menu.dashboard', route: 'admin_dashboard', default: true }
             - { entity: 'Post', label: 'admin.menu.post' }
             - { entity: 'Image', label: 'admin.menu.image' }
-#            - { entity: 'Event', label: 'admin.menu.event' }
+            - { entity: 'User', label: 'admin.menu.user' }
     entities:
         Post:
             class: App\Entity\Editorial\Post
@@ -99,3 +99,14 @@ easy_admin:
         User:
             class: App\Entity\User\User
             controller: App\Controller\Admin\User\UserController
+            disabled_actions: ['new']
+            list:
+                fields:
+                    - { property: username }
+                    - { property: email }
+                    - { property: isActive }
+            form:
+                fields:
+                    - { property: username }
+                    - { property: email }
+                    - { property: isActive }
