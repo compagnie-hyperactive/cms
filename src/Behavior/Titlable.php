@@ -14,7 +14,7 @@ trait Titlable {
 
 	/**
 	 * @var string $title
-	 * @ORM\Column(type="string")
+	 * @ORM\Column(type="string", length=512)
 	 */
 	protected $title = "";
 
