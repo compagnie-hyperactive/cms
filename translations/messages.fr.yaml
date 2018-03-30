@@ -5,4 +5,10 @@ admin.menu.dashboard: Tableau de bord
 admin.menu.article: Article
 admin.menu.event: Événement
 admin.menu.image: Image
+admin.menu.user: Utilisateurs
+admin.post.general.title: Informations générales
+admin.post.status.title: Status du post
+admin.post.image.title: Illustration du post
+admin.post.headImage.title: Image d'entête
+admin.post.seo.title: Seo
 Image: Image
