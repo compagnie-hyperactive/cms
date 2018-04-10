@@ -1,3 +1,7 @@
 admin_dashboard:
     path: /dashboard
     defaults: { _controller: 'App\Controller\Admin\DashboardController::dashboard' }
+
+admin_homepage:
+    path: /homepage
+    defaults: { _controller: 'App\Controller\Admin\Homepage\HomepageController::homepageConfiguration' }

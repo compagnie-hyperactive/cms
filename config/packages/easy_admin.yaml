@@ -21,6 +21,7 @@ easy_admin:
             - '@LchSeoBundle/form/fields.html.twig'
         menu:
             - { label: 'admin.menu.dashboard', route: 'admin_dashboard', default: true }
+            - { label: 'admin.menu.homepage', route: 'admin_homepage', default: true }
             - { entity: 'Post', label: 'admin.menu.post' }
             - { entity: 'Image', label: 'admin.menu.image' }
             - { entity: 'User', label: 'admin.menu.user' }
