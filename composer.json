@@ -6,6 +6,7 @@
         "ext-iconv": "*",
         "easycorp/easyadmin-bundle": "^1.17",
         "egeloen/ckeditor-bundle": "^6.0",
+        "sensio/framework-extra-bundle": "^5.1",
         "lch/seo-bundle": "dev-develop",
         "lch/user-bundle": "dev-master",
         "symfony/console": "^3.4",
