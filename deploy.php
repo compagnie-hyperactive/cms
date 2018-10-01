@@ -1,7 +1,7 @@
 <?php
 namespace Deployer;
 
-require 'recipe/common.php';
+require 'recipe/symfony4.php';
 
 // Project name
 set('application', 'lch-cms');
@@ -38,7 +38,6 @@ task('deploy', [
     'deploy:release',
     'deploy:update_code',
     'deploy:shared',
-    'deploy:writable',
     'deploy:composer',
 	'deploy:database_migration',
     'deploy:clear_paths',
@@ -68,7 +67,8 @@ task('remove', function () {
 
 desc('Update composer in good path');
 task('deploy:composer', function () {
-	run("cd {{release_path}}; composer install --verbose --prefer-dist --no-progress --no-interaction --optimize-autoloader");
+	run("cd {{release_path}}; /opt/php7/bin/php /usr/local/bin/composer install --verbose --prefer-dist --no-progress --no-interaction --optimize-autoloader");
+//	run("export PATH=/opt/php7/bin/php:$PATH; cd {{release_path}}; composer install --verbose --prefer-dist --no-progress --no-interaction --optimize-autoloader");
 });
 
 desc('Compile assets');
