@@ -14,10 +14,10 @@ set('git_tty', true);
 
 // Shared files/dirs between deploys 
 set('shared_files', ['.env', 'public/.htaccess', 'public/.htpasswd']);
-set('shared_dirs', ['var', 'public/media']);
+set('shared_dirs', ['var', 'public/media', 'vendor']);
 
 // Writable dirs by web server 
-set('writable_dirs', ['app/var']);
+//set('writable_dirs', ['var']);
 
 
 // Hosts
@@ -25,7 +25,7 @@ set('writable_dirs', ['app/var']);
 host('cms.preprod')
 	->stage('preprod')
 	->set('branch', 'master')
-    ->set('deploy_path', '/var/www/html/lchcms/www');
+    ->set('deploy_path', '/var/www/lchcms/www');
     
 
 // Tasks
@@ -56,7 +56,7 @@ after('deploy:failed', 'deploy:unlock');
 
 desc('Execute Doctrine Migrations');
 task('deploy:database_migration', function () {
-	$output = run("cd {{release_path}}; php bin/console doctrine:migrations:diff; php bin/console doctrine:migrations:migrate --no-interaction --allow-no-migration");
+	$output = run("cd {{release_path}}; /opt/php7/bin/php bin/console doctrine:migrations:diff; /opt/php7/bin/php bin/console doctrine:migrations:migrate --no-interaction --allow-no-migration");
 	write($output);
 });
 
@@ -68,11 +68,11 @@ task('remove', function () {
 
 desc('Update composer in good path');
 task('deploy:composer', function () {
-	run("cd {{release_path}}/app; composer install --verbose --prefer-dist --no-progress --no-interaction --optimize-autoloader");
+	run("cd {{release_path}}; composer install --verbose --prefer-dist --no-progress --no-interaction --optimize-autoloader");
 });
 
 desc('Compile assets');
 task('deploy:assets', function () {
-	run("cd {{release_path}}/app; yarn");
-	run("cd {{release_path}}/app; ./node_modules/.bin/encore dev");
+//	run("cd {{release_path}}/app; yarn");
+//	run("cd {{release_path}}/app; ./node_modules/.bin/encore dev");
 });
